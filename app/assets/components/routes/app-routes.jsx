@@ -38,7 +38,7 @@ Router.routes = (function() {
     "#login": _login,
     "#about-us": _about_us,
     "#contact-us": _contact_us,
-    "#publications": _publications,
+
   }
 }())
 

@@ -5,6 +5,7 @@
 //= require actions/publication-actions
 //= require form-for
 //= require stores/publications-store
+//= require react/pub-list-item
 
 
 var PublicationsDisplay = React.createClass({displayName: 'PublicationsDisplay',
@@ -19,7 +20,7 @@ var PublicationsDisplay = React.createClass({displayName: 'PublicationsDisplay',
   componentDidMount: function(){
     PublicationsStore.addChangeEvent(function(){
       if(this.isMounted()) this.setState({
-        publications: PublicationsStore.pubs(),
+        publications: PublicationsStore.publications(),
         creatingNew: false
       });
     }.bind(this))
@@ -55,11 +56,11 @@ var PublicationsDisplay = React.createClass({displayName: 'PublicationsDisplay',
     PublicationActions.createPublication(data);
   },
   render: function(){
-    console.log('rendering dawg')
+
     publications = [];
     if(this.state.publications){
       this.state.publications.forEach(function(pub){
-        var thisPub = pub.pub;
+        var thisPub = pub;
         publications.push(
           React.createElement("li", {class: "list-group-item"}, 
             React.createElement(PubListItem, {key: thisPub.id, pub: thisPub, errors: this.state.errors})
@@ -67,12 +68,19 @@ var PublicationsDisplay = React.createClass({displayName: 'PublicationsDisplay',
         )
       }.bind(this));
     }
+
     return(
-      React.createElement("div", {id: "publication-panel"}, 
-        React.createElement("h2", null, "Publication Records"), 
-        this.renderCreationFormButton(), 
-        React.createElement("ul", {class: "list-group"}, 
-          publications
+      React.createElement("div", {id: "publications-panel", class: "row"}, 
+        React.createElement("div", {class: "col-md-pull-4"}, 
+          React.createElement("h2", null, "Publication Records"), 
+          this.renderCreationFormButton(), 
+          React.createElement("ul", {class: "list-group"}, 
+            publications
+          )
+        ), 
+        React.createElement("div", {class: "col-md-4 col-md-push-4"}, 
+          React.createElement("h2", null, "something else")
+
         )
       )
     )

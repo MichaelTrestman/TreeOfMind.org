@@ -5,6 +5,7 @@
 //= require actions/publication-actions
 //= require form-for
 //= require stores/publications-store
+//= require react/pub-list-item
 
 
 var PublicationsDisplay = React.createClass({
@@ -19,7 +20,7 @@ var PublicationsDisplay = React.createClass({
   componentDidMount: function(){
     PublicationsStore.addChangeEvent(function(){
       if(this.isMounted()) this.setState({
-        publications: PublicationsStore.pubs(),
+        publications: PublicationsStore.publications(),
         creatingNew: false
       });
     }.bind(this))
@@ -55,11 +56,11 @@ var PublicationsDisplay = React.createClass({
     PublicationActions.createPublication(data);
   },
   render: function(){
-    console.log('rendering dawg')
+
     publications = [];
     if(this.state.publications){
       this.state.publications.forEach(function(pub){
-        var thisPub = pub.pub;
+        var thisPub = pub;
         publications.push(
           <li class='list-group-item'>
             <PubListItem key={thisPub.id} pub={thisPub} errors={this.state.errors} />
@@ -67,13 +68,20 @@ var PublicationsDisplay = React.createClass({
         )
       }.bind(this));
     }
+
     return(
-      <div id='publication-panel'>
-        <h2>Publication Records</h2>
-        {this.renderCreationFormButton()}
-        <ul class='list-group'>
-          {publications}
-        </ul>
+      <div id='publications-panel' class='row'>
+        <div class='col-md-pull-4'>
+          <h2>Publication Records</h2>
+          {this.renderCreationFormButton()}
+          <ul class='list-group'>
+            {publications}
+          </ul>
+        </div>
+        <div class='col-md-4 col-md-push-4'>
+          <h2>something else</h2>
+
+        </div>
       </div>
     )
   }

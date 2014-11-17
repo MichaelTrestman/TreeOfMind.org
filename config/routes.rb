@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'about' => 'pages#about'
+
   resources :publications, :only => [:index, :create, :update, :destroy]
   resource :sessions, :only => [:create, :destroy]
   resources :users, :only => [:create]
