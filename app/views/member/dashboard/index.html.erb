@@ -1,0 +1,108 @@
+<div class="inside-body-content-container clearfix">
+  <div class="container-fluid horizontal-section-container clearfix">
+    <div class="row">
+
+      <div class="col-sm-3">
+
+        <div id="sidebar-menu" class="section-container sm-extra-top-padding clearfix">
+
+          <a href="#" class="section-header">
+            <h5 class="text">Member Dashboard</h5>
+          </a>
+
+          <div class="section-content clearfix">
+
+            <ul class="sidebar-menu">
+              <li class="menu-item">
+                <a href="#phones">phones</a>
+              </li>
+              <li class="menu-item">
+                <a href="#addresses">addresses</a>
+              </li>
+              <li class="menu-item">
+                <a href="#licenses">licenses</a>
+              </li>
+              <li class="menu-item">
+                <a href="#links">social media links</a>
+              </li>
+              <li class="menu-item">
+                <a href="#levels-of-care">levels of care</a>
+              </li>
+              <li class="menu-item">
+                <a href="#populations">populations served</a>
+              </li>
+              <li class="menu-item">
+                <a href="#insurances">insurance plans accepted</a>
+              </li>
+              <% if program? %>
+                <li class="menu-item">
+                  <a href="#contacts">contacts</a>
+                </li>
+                <li class="menu-item">
+                  <a href="#directors">program director info</a>
+                </li>
+                <li class="menu-item">
+                  <a href="#descriptions">program description</a>
+                </li>
+                <li class="menu-item">
+                  <a href="#staffs">program staff</a>
+                </li>
+              <% else %>
+                <li class="menu-item">
+                  <a href="#personal-information">personal information</a>
+                </li>
+                <li class="menu-item">
+                  <a href="#modalities">modalities used</a>
+                </li>
+                <li class="menu-item">
+                  <a href="#co-occuring-specialties">co-occurring and other clinical specialties</a>
+                </li>
+                <li class="menu-item">
+                  <a href="#languages">languages</a>
+                </li>
+                <li class="menu-item">
+                  <a href="#treatment-approaches">treatment approaches</a>
+                </li>
+                <h6>professional background</h6>
+                <li class="menu-item">
+                  <ul class="sidebar-menu">
+                    <li class="menu-item">
+                      <a href="#background-psychotherapist">Psychotherapis</a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="#background-nutritionists-dietitians">Psychiatrist</a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="#background-physicians-other-medical">Nutritionists / Dietitians</a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="#background-physicians-other-medical">Physicians and Other Medical</a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="#background-dentist">Dentist</a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="#background-general-credentials">general credentials</a>
+                    </li>
+                    <li class="menu-item">
+                      <a href="#background-other">Other</a>
+                    </li>
+                  </ul>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-9">
+        <div id="main-page-content" class="section-container main-page-content clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  SessionStore.setCurrentUser('<%= raw j @serialized_user.to_json %>')
+</script>
+

@@ -1,0 +1,30 @@
+/* It is recommended to place all your extra/additional CSS rules here */
+#logo_dark{
+  height: 7em;
+}
+#main-menu-container{
+  height: 3em;
+}
+input, textarea {
+  width: 100%;
+}
+input[type="checkbox"] {
+  width: 1em;
+  margin: 0.25em;
+}
+.personal-info img.profile-image {
+  width: 100;
+  height: 100;
+}
+.ad img.banner {
+  width: 33.33333333%;
+  height: 100;
+}
+
+.active-ad img {
+  width: 100%;
+}
+
+.active-ad {
+  padding: 1em 0;
+}

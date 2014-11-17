@@ -1,0 +1,8 @@
+<div class="inside-body-content-container clearfix">
+  <% render 'carousel' %>
+  <%= render 'home_main' %>
+  <%= render 'services' %>
+</div>
+<script>
+  SessionStore.setCurrentUser('<%= raw j @serialized_user.to_json %>')
+</script>

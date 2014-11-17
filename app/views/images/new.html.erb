@@ -1,0 +1,10 @@
+<% if @imageable.image %>
+  <%= image_tag @imageable.image.url %>
+<% end %>
+<%= form_for @image, :html => { :multipart => true } do |form| %>
+  <%= form.text_field :name %>
+  <%= form.file_field :attachment %>
+  <%= hidden_field_tag :imageable_type, @imageable.class.to_s %>
+  <%= hidden_field_tag :imageable_id, @imageable.id %>
+  <%= form.submit %>
+<% end %>
