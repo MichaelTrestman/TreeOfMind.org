@@ -12,13 +12,17 @@ var PubListItem = React.createClass({displayName: 'PubListItem',
 
     var thisPub = this.props.pub
     return (
-      React.createElement("div", {className: "row"}, 
+      React.createElement("div", {className: "list-group-item"}, 
+        React.createElement("a", {href: "#", onClick: this.displayPub}, 
           React.createElement("h4", null, "title: ", thisPub.title), 
           React.createElement("p", null, thisPub.abstract)
+        )
       )
     )
   },
-
+  displayPub: function(){
+    //set publication store currentPub to this publication... that will make the display update on the right
+  },
   componentDidMount: function(){
   }
 })

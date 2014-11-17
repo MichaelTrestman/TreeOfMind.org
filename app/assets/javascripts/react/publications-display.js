@@ -6,6 +6,7 @@
 //= require form-for
 //= require stores/publications-store
 //= require react/pub-list-item
+//= require react/pub-inspect
 
 
 var PublicationsDisplay = React.createClass({displayName: 'PublicationsDisplay',
@@ -56,7 +57,6 @@ var PublicationsDisplay = React.createClass({displayName: 'PublicationsDisplay',
     PublicationActions.createPublication(data);
   },
   render: function(){
-
     publications = [];
     if(this.state.publications){
       this.state.publications.forEach(function(pub){
@@ -68,19 +68,22 @@ var PublicationsDisplay = React.createClass({displayName: 'PublicationsDisplay',
         )
       }.bind(this));
     }
-
     return(
-      React.createElement("div", {id: "publications-panel", class: "row"}, 
-        React.createElement("div", {class: "col-md-pull-4"}, 
-          React.createElement("h2", null, "Publication Records"), 
+      React.createElement("div", null, 
+        React.createElement("h1", null, "Publications Dashboard"), 
           this.renderCreationFormButton(), 
-          React.createElement("ul", {class: "list-group"}, 
-            publications
+          React.createElement("a", {href: "#"}, "Search"), 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {id: "publications-display", className: "col-sm-6"}, 
+            React.createElement("h3", null, "list of publications"), 
+            React.createElement("ul", {className: "list-group"}, 
+              publications
+            )
+          ), 
+          React.createElement("div", {className: "col-sm-6"}, 
+            React.createElement("h3", null, "Information"), 
+              React.createElement(PubInspect, null)
           )
-        ), 
-        React.createElement("div", {class: "col-md-4 col-md-push-4"}, 
-          React.createElement("h2", null, "something else")
-
         )
       )
     )

@@ -13,12 +13,15 @@
   <%= csrf_meta_tags %>
 
 </head>
-<body class="background-light twlsky-red twlsky-mixedcolours isolated-sections loader-bar">
-
-  <div class="outer-container clearfix">
-    <%= render 'layouts/header' %>
-    <%= yield %>
+<body >
+  <div class="panel panel-default">
+    <div class="outer-container clearfix">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+    </div>
+    <div class='panel-footer'>
+      <%= render 'layouts/footer' %>
+    </div>
   </div>
-    <%= render 'layouts/footer' %>
 </body>
 </html>

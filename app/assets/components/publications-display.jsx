@@ -6,6 +6,7 @@
 //= require form-for
 //= require stores/publications-store
 //= require react/pub-list-item
+//= require react/pub-inspect
 
 
 var PublicationsDisplay = React.createClass({
@@ -56,7 +57,6 @@ var PublicationsDisplay = React.createClass({
     PublicationActions.createPublication(data);
   },
   render: function(){
-
     publications = [];
     if(this.state.publications){
       this.state.publications.forEach(function(pub){
@@ -68,19 +68,22 @@ var PublicationsDisplay = React.createClass({
         )
       }.bind(this));
     }
-
     return(
-      <div id='publications-panel' class='row'>
-        <div class='col-md-pull-4'>
-          <h2>Publication Records</h2>
+      <div>
+        <h1>Publications Dashboard</h1>
           {this.renderCreationFormButton()}
-          <ul class='list-group'>
-            {publications}
-          </ul>
-        </div>
-        <div class='col-md-4 col-md-push-4'>
-          <h2>something else</h2>
-
+          <a href='#'>Search</a>
+        <div className='row'>
+          <div id='publications-display' className='col-sm-6'>
+            <h3>list of publications</h3>
+            <ul className='list-group'>
+              {publications}
+            </ul>
+          </div>
+          <div className='col-sm-6'>
+            <h3>Information</h3>
+              <PubInspect/>
+          </div>
         </div>
       </div>
     )
