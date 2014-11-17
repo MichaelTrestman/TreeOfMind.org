@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117062859) do
+ActiveRecord::Schema.define(version: 20141117074919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 20141117062859) do
     t.text     "abstract"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "researchers", force: true do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "attributes_firebase_url"
+  end
+
+  create_table "taxons", force: true do |t|
+    t.string  "name"
+    t.string  "other_kind_of_name"
+    t.integer "supertaxon_id"
   end
 
 end

@@ -1,77 +1,49 @@
-<header class="clearfix">
+<nav class='navbar navbar-default'>
 
-  <div class="logo">
-  </div><!-- .logo -->
+  <div id='main-menu-container' class='container-fluid'>
 
-  <div id="main-menu-container" class="clearfix">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-    <div id="mobile-menu-icon" class="btn btn-outline-inverse visible-xs"><span class="glyphicon glyphicon-th"></span></div>
-
-   <!--  <div id="search-container">
-      <div id="search-icon"><i class="fa fa-search"></i></div>
-      <div id="search-input">
-        <form class="clearfix">
-          <input type="text" class="form-control" id="website-search" name="search" placeholder="Search">
-          <div id="search-close"><i class="fa fa-times"></i></div>
-        </form>
-      </div>
-    </div>
-  -->
-    <!-- #search-container -->
-
-    <nav id="nav-bar nav-default" role='navigation'>
-      <ul class='nav nav-tabs'>
-      <li class="menu-item"><a href="#">About</a>
-        <ul class="sub-menu">
-          <li class="menu-item"><a href="/#about-us">About Us</a></li>
-          <li class="menu-item"><a href="/#contact-us">Contact Us</a></li>
-          <li class="menu-item"><a href="/#advertising">Advertising</a></li>
-          <li class="menu-item"><a href="/#get-involved">Get Involved</a></li>
-          <li class="menu-item"><a href="/#recruit-speakers">Recruit Speakers</a></li>
-          <li class="menu-item"><a href="/#about-ed">About Eating Disorders</a></li>
-          <li class="menu-item"><a href="/#blogs">Blogs</a></li>
-          <li class="menu-item"><a href="/#events">Events</a></li>
-        </ul>
-      </li>
-      <li class="menu-item"><a href="#">Researchers</a>
-        <ul class="sub-menu">
-          <li class="menu-item"><a href="/#referrals">Referrals</a></li>
-          <li class="menu-item"><a href="/#telephone">Telephone</a></li>
-          <li class="menu-item"><a href="/#media">Media</a></li>
-        </ul>
-      </li>
-      <li class="menu-item"><a href="#">Taxa</a>
-        <ul class="sub-menu">
-          <li class="menu-item"><a href="/#outpatient-providers">Outpatient Providers</a></li>
-          <li class="menu-item"><a href="/#tx-programs">Tx Programs</a></li>
-          <li class="menu-item"><a href="/#groups">Groups</a></li>
-        </ul>
-      </li>
-      <li class="menu-item"><a href="#">Traits</a>
-        <ul class="sub-menu">
-          <li class="menu-item"><a href="/#professional-development-opportunities">Professional Development Opportunities</a></li>
-          <li class="menu-item"><a href="/#peer-support">Peer Support & Consultation Groups</a></li>
-          <li class="menu-item"><a href="/#employment-opportunities">Employment Opportunities</a></li>
-          <li class="menu-item"><a href="/#training-opportunities">Training Opportunities</a></li>
-          <li class="menu-item"><a href="/#prof-get-involved">Get Involved</a></li>
-        </ul>
-      </li>
-
-      <li class='menu-item'><a href='/#donate'>Donate</a></li>
-
-      <% if user_logged_in? %>
-        <li class="menu-item"><a href="#">Account</a>
-          <ul class="sub-menu">
-            <% dashboard_path = admin? ? admin_dashboard_index_path : member_dashboard_index_path %>
-            <li class="menu-item"><%= link_to 'Dashboard', dashboard_path %></li>
-            <li class="menu-item"><%= link_to 'Logout', sessions_path, :method => :delete, :class => 'logout' %></li>
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">Visualizations</a>
+        </li>
+        <li>
+          <a href="#">About the project</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Explore Content <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#">Taxa</a></li>
+            <li><a href="#">Researchers</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
-      <% else %>
-        <li class="menu-item"><a href="/#login">Join APTED</a></li>
-      <% end %>
-    </ul><!-- #main-menu -->
+      </ul>
 
-  </div><!-- #menu-container -->
-
-</header>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="#">For Researchers</a></li>
+        <li class="dropdown">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contribute <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Log Bibliographic Articles</a></li>
+            <li><a href="#">Write Topic Article</a></li>
+            <li><a href="#">Work on task queue</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Donate</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
