@@ -12,9 +12,9 @@ var PubListItem = React.createClass({displayName: 'PubListItem',
 
     var thisPub = this.props.pub
     return (
-      React.createElement("div", {className: "list-group-item"},
-        React.createElement("a", {href: "#", onClick: this.displayPub},
-          React.createElement("h4", null, "title: ", thisPub.title),
+      React.createElement("div", {className: "list-group-item"}, 
+        React.createElement("a", {href: "#", onClick: this.displayPub}, 
+          React.createElement("h4", null, "title: ", thisPub.title), 
           React.createElement("p", null, thisPub.abstract)
         )
       )

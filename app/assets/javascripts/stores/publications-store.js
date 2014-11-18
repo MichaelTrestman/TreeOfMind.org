@@ -3,13 +3,22 @@
 
 var PublicationsStore = (function(){
   var _publications = [];
-  var _active_pub = null;
+  var _active_pub = {};
+  _active_pub.topics = [];
+  _active_pub.distribution = null;
   var CHANGE_EVENT = 'change';
   var FAIL_TO_CREATE_EVENT = 'creation-failed';
 
   return {
     activePub: function(){
       return _active_pub;
+    },
+    getTopics: function(){
+
+
+    },
+    getTaxa: function(){
+
     },
     all: function(query){
        if (query==='undefined'){
@@ -66,6 +75,17 @@ var PublicationsStore = (function(){
           _active_pub = pub
         }
       });
+      $.ajax({
+        url: '/publications/' + id,
+        type: 'GET',
+        data: {id: id}
+      })
+      .done(function(data){
+        console.log(data)
+
+
+
+      }.bind(this))
       this.triggerChange();
 
     },
@@ -76,8 +96,6 @@ var PublicationsStore = (function(){
         data: {pub: data}
       })
       .done(function(data){
-        console.log('that shit is updated dog')
-        console.log(data)
         _active_pub = data
         _publications.forEach(function(pub, i){
           if (pub.id === data.id) {

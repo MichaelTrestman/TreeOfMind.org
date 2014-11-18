@@ -9,7 +9,7 @@
 var PubInspect = React.createClass({
   getInitialState: function(){
     return {
-      pubToInspect: null,
+      thisPub: null,
       editing: false,
       topics: [],
       taxa: []
@@ -19,7 +19,7 @@ var PubInspect = React.createClass({
     PublicationsStore.addChangeEvent(function(data){
       if(this.isMounted()) this.setState({
         editing:false,
-        pubToInspect: PublicationsStore.activePub()
+        thisPub: PublicationsStore.activePub()
       });
     }.bind(this))
     PublicationsStore.addFailToTakeAction(function(e, data){
@@ -33,14 +33,12 @@ var PubInspect = React.createClass({
     this.setState({ editing: true })
   },
 
-
-
   updatePub: function(data){
     PublicationActions.updatePublication(data);
     this.setState({ editing: false })
   },
   render: function(){
-    if (!this.state.pubToInspect){
+    if (!this.state.thisPub){
       return (
         <p>select a publication, researcher, or taxon to display info about it here</p>
       )
@@ -51,7 +49,7 @@ var PubInspect = React.createClass({
         abstract: {type: 'textarea'}
       }
 
-      var object = this.state.pubToInspect;
+      var object = this.state.thisPub;
       console.log(object)
       return (
         <FormFor object={ object } options = { options } errors = { [] } />
@@ -59,10 +57,10 @@ var PubInspect = React.createClass({
     }
     return (
       <div>
-        <h3>Title: {this.state.pubToInspect.title}</h3>
+        <h3>Title: {this.state.thisPub.title}</h3>
         <a href='#' onClick={this.editPub}>Edit | </a>
         <a href='#' onClick={this.delete}>delete</a>
-        <p>Abstract: {this.state.pubToInspect.abstract}</p>
+        <p>Abstract: {this.state.thisPub.abstract}</p>
         <ul><h4>topics:</h4>
           {this.state.topics}
         </ul>
