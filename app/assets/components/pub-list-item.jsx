@@ -20,9 +20,8 @@ var PubListItem = React.createClass({
       </div>
     )
   },
-  displayPub: function(){
-    //set publication store currentPub to this publication... that will make the display update on the right
-  },
-  componentDidMount: function(){
+  displayPub: function(e){
+    e.preventDefault();
+    PublicationActions.displayPublication(this.props.pub.id)
   }
 })

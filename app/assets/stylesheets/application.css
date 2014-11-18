@@ -21,5 +21,6 @@
  *= require loader
  *= require styles
  *= require fullcalendar
+ *= require jazzyStylez
  *= require_self
  */

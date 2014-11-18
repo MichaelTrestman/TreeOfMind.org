@@ -1,6 +1,12 @@
 //= require dispatchers/ToM-dispatcher
 //= require constants/ToM-constants
 var PublicationActions = {
+  displayPublication: function(id) {
+    ToMDispatcher.handleViewAction({
+      type: ToMConstants.DISPLAY_PUB,
+      id: id
+    })
+  },
   createPublication: function (data) {
     ToMDispatcher.handleViewAction({
       type: ToMConstants.CREATE_PUBLICATION,

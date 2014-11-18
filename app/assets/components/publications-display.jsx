@@ -74,7 +74,7 @@ var PublicationsDisplay = React.createClass({
           {this.renderCreationFormButton()}
           <a href='#'>Search</a>
         <div className='row'>
-          <div id='publications-display' className='col-sm-6'>
+          <div id='publications-display' className='col-sm-6 scrollyballz'>
             <h3>list of publications</h3>
             <ul className='list-group'>
               {publications}
