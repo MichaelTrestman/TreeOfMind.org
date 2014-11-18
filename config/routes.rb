@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   get 'about' => 'pages#about'
 
-  resources :publications, :only => [:index, :create, :update, :destroy]
+  resources :publications, :only => [:show, :index, :create, :update, :destroy]
   resource :sessions, :only => [:create, :destroy]
   resources :users, :only => [:create]
   resources :events, :only => [:index, :show]
