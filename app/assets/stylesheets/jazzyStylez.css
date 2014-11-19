@@ -1,4 +1,9 @@
+
 .scrollyballz {
-    background-color: black;
+    height: 300px;
+    border: solid 1px black;
+
+
     overflow: scroll;
+    max-height: 80%;
 }

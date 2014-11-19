@@ -9,10 +9,13 @@
 //= require react/pub-inspect
 
 
-var PublicationsDisplay = React.createClass({
+var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
   getInitialState: function(){
     return {
       pubs: [],
+      taxa: [],
+      topics: [],
+      authors: [],
       query: null,
       creatingNew: false,
       errors: []
@@ -33,9 +36,9 @@ var PublicationsDisplay = React.createClass({
 
   renderCreationFormButton: function(){
     return(
-      <a href="#" onCLick={this.toggleCreationForm}>
-        {this.state.creatingNew ? "Back" : "Create New Publication Record"}
-      </a>
+      React.createElement("a", {href: "#", onCLick: this.toggleCreationForm}, 
+        this.state.creatingNew ? "Back" : "Create New Publication Record"
+      )
     )
   },
 
@@ -46,7 +49,7 @@ var PublicationsDisplay = React.createClass({
       abstract: { type: 'textarea'}
     }
     return (
-      <FormFor object={ PublicationsStore.newPublication() } options = { options } errors = { this.state.errors } />
+      React.createElement(FormFor, {object:  PublicationsStore.newPublication(), options: options, errors:  this.state.errors})
     )
   },
   toggleCreationForm: function(e){
@@ -62,30 +65,30 @@ var PublicationsDisplay = React.createClass({
       this.state.publications.forEach(function(pub){
         var thisPub = pub;
         publications.push(
-          <li class='list-group-item'>
-            <PubListItem key={thisPub.id} pub={thisPub} errors={this.state.errors} />
-          </li>
+          React.createElement("li", {class: "list-group-item"}, 
+            React.createElement(PubListItem, {key: thisPub.id, pub: thisPub, errors: this.state.errors})
+          )
         )
       }.bind(this));
     }
     return(
-      <div>
-        <h1>Publications Dashboard</h1>
-          {this.renderCreationFormButton()}
-          <a href='#'>Search</a>
-        <div className='row'>
-          <div id='publications-display' className='col-sm-6 scrollyballz'>
-            <h3>list of publications</h3>
-            <ul className='list-group'>
-              {publications}
-            </ul>
-          </div>
-          <div className='col-sm-6'>
-            <h3>Information</h3>
-              <PubInspect/>
-          </div>
-        </div>
-      </div>
+      React.createElement("div", null, 
+        React.createElement("h1", null, "Research Dashboard"), 
+          this.renderCreationFormButton(), 
+          React.createElement("a", {href: "#"}, "Search"), 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {id: "publications-display", className: "col-sm-4 scrollyballz"}, 
+            React.createElement("h3", null, "list of publications"), 
+            React.createElement("ul", {className: "list-group"}, 
+              publications
+            )
+          ), 
+          React.createElement("div", {className: "col-sm-8"}, 
+            React.createElement("h3", null, "Information"), 
+              React.createElement(PubInspect, null)
+          )
+        )
+      )
     )
   }
 })

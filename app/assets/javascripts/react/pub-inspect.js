@@ -12,7 +12,9 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
       thisPub: null,
       editing: false,
       topics: [],
-      taxa: []
+      taxa: [],
+      authors: [],
+      references: []
     };
   },
   componentDidMount: function(){
@@ -66,6 +68,12 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
         ), 
         React.createElement("ul", null, React.createElement("h4", null, "taxa:"), 
           this.state.taxa
+        ), 
+        React.createElement("ul", null, React.createElement("h4", null, "authors:"), 
+          this.state.authors
+        ), 
+        React.createElement("ul", null, React.createElement("h4", null, "references:"), 
+          this.state.references
         )
       )
     )
