@@ -73,20 +73,19 @@ var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
     }
     return(
       React.createElement("div", null, 
-        React.createElement("h1", null, "Research Dashboard"), 
-          this.renderCreationFormButton(), 
-          React.createElement("a", {href: "#"}, "Search"), 
+
         React.createElement("div", {className: "row"}, 
-          React.createElement("div", {id: "publications-display", className: "col-sm-4 scrollyballz"}, 
+          React.createElement("div", {id: "publications-display"}, 
             React.createElement("h3", null, "list of publications"), 
+            this.renderCreationFormButton(), " |", 
+            React.createElement("a", {href: "#"}, " Search"), 
+            React.createElement("div", {className: "scrollyballz"}, 
             React.createElement("ul", {className: "list-group"}, 
-              publications
+                publications
+              )
             )
-          ), 
-          React.createElement("div", {className: "col-sm-8"}, 
-            React.createElement("h3", null, "Information"), 
-              React.createElement(PubInspect, null)
           )
+
         )
       )
     )

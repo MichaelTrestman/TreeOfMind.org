@@ -73,20 +73,19 @@ var ListBrowseDisplay = React.createClass({
     }
     return(
       <div>
-        <h1>Research Dashboard</h1>
-          {this.renderCreationFormButton()}
-          <a href='#'>Search</a>
+
         <div className='row'>
-          <div id='publications-display' className='col-sm-4 scrollyballz'>
+          <div id='publications-display' >
             <h3>list of publications</h3>
+            {this.renderCreationFormButton()} |
+            <a href='#'> Search</a>
+            <div className='scrollyballz'>
             <ul className='list-group'>
-              {publications}
-            </ul>
+                {publications}
+              </ul>
+            </div>
           </div>
-          <div className='col-sm-8'>
-            <h3>Information</h3>
-              <PubInspect/>
-          </div>
+
         </div>
       </div>
     )

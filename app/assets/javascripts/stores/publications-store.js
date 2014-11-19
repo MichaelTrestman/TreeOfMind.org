@@ -14,10 +14,22 @@ var PublicationsStore = (function(){
       return _active_pub;
     },
     getTopics: function(){
-
+      $.ajax({
+        url: '/topics',
+        type: 'GET',
+        data: {
+          pub_id: _active_pub.id
+        }
+      })
+      .done(function(data){
+        //umm there's no controller as of now...
+      })
 
     },
     getTaxa: function(){
+
+    },
+    getAuthors: function(){
 
     },
     all: function(query){

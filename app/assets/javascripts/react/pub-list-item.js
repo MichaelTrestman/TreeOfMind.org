@@ -23,5 +23,6 @@ var PubListItem = React.createClass({displayName: 'PubListItem',
   displayPub: function(e){
     e.preventDefault();
     PublicationActions.displayPublication(this.props.pub.id)
+    location.href = '#inspect_publication';
   }
 })

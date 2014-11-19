@@ -41,13 +41,23 @@ Router.routes = (function() {
     );
 
   }
+  var _inspect_publication = function(){
+    React.unmountComponentAtNode(
+        $('#inspectDisplay')[0]
+      );
+    React.render(
+      <PubInspect/>, $('#inspectDisplay')[0]
+    );
+  }
 
   return {
     "#login": _login,
     "#about-us": _about_us,
     "#contact-us": _contact_us,
     // '#publications': _publications
-    '#list_publications': _list_publications
+    '#list_publications': _list_publications,
+    '#inspect_publication':
+    _inspect_publication
   }
 }())
 
