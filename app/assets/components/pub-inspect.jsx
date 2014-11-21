@@ -29,6 +29,7 @@ var PubInspect = React.createClass({
         errors: data
       })
     }.bind(this));
+    PublicationsStore.display();
   },
   editPub: function(e){
     e.preventDefault();
@@ -57,26 +58,65 @@ var PubInspect = React.createClass({
         <FormFor object={ object } options = { options } errors = { [] } />
       )
     }
+    console.log(this.state.thisPub.topics)
     return (
       <div>
         <h3>Title: {this.state.thisPub.title}</h3>
         <a href='#' onClick={this.editPub}>Edit | </a>
         <a href='#' onClick={this.delete}>delete</a>
         <p>Abstract: {this.state.thisPub.abstract}</p>
-        <ul><h4>topics:</h4>
-          {this.state.topics}
-        </ul>
-        <ul><h4>taxa:</h4>
-          {this.state.taxa}
-        </ul>
-        <ul><h4>authors:</h4>
-          {this.state.authors}
-        </ul>
-        <ul><h4>references:</h4>
-          {this.state.references}
-        </ul>
+        <div className='row'>
+          <div className='col-lg-3 infoPanel'>
+            <ul className='scrollyballz'>
+              <p className='tagName'>topics:</p>
+              {this.renderList(this.state.thisPub.topics)}
+            </ul>
+          </div>
+          <div className='col-lg-3 infoPanel'>
+            <ul>
+              <p className='tagName'>taxa:</p>
+              {this.renderList(this.state.taxa)}
+            </ul>
+          </div>
+          <div className='col-lg-3 infoPanel'>
+            <ul>
+              <p className='tagName'>authors:</p>
+              {this.renderList(this.state.authors)}
+            </ul>
+          </div>
+          <div className='col-lg-3 infoPanel'>
+            <ul>
+              <p className='tagName'>references:</p>
+              {this.renderList(this.state.references)}
+            </ul>
+          </div>
+        </div>
+
+
       </div>
     )
+  },
+  renderList: function (tags) {
+    console.log(tags)
+    var tagList = [];
+    if (tags && tags.length > 1) {
+       console.log('constructing taglist')
 
+      tags.forEach(function(tag){
+        var label
+        if(tag.title){ label = tag.title } else if (tag.name){ label = tag.name }
+          console.log('tag:')
+          console.log(tag)
+        tagList.push(
+          <li> { label }
+          </li>
+        )
+
+      })
+
+    };
+        console.log('tagList')
+        console.log(tagList)
+    return tagList
   }
 })

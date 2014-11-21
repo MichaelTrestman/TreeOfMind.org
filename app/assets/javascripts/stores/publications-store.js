@@ -51,6 +51,10 @@ var PublicationsStore = (function(){
     publications: function(){
       return _publications;
     },
+    topics: function(){
+      console.log(_active_pub.topics)
+      return _active_pub._topics
+    },
     new: function(){
       return {
         title: null,
@@ -93,9 +97,7 @@ var PublicationsStore = (function(){
         data: {id: id}
       })
       .done(function(data){
-        console.log(data)
-
-
+        _active_pub.topics = data.topics;
 
       }.bind(this))
       this.triggerChange();

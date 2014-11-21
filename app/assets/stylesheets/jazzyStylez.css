@@ -8,10 +8,20 @@
 
 .mainContainer{
   margin: 2%;
+  /*height: 700px;*/
   /*max-width: 95%;*/
   /*border: solid 1px red;*/
 
 }
 .row {
   border: solid 1px black;
+}
+.infoPanel {
+  text-align: left;
+  /*background-color: rgba( 5, 5, 5, 0.5);*/
+  border: solid 1px black;
+
+}
+.tagName {
+  color: blue;
 }

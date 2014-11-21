@@ -5,6 +5,7 @@
 //= require actions/publication-actions
 //= require form-for
 //= require stores/publications-store
+
 //= require react/pub-list-item
 //= require react/pub-inspect
 

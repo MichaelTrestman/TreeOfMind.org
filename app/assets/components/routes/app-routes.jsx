@@ -1,8 +1,14 @@
 /**
  * @jsx React.DOM
  */
+
+
+//=require react
 //= require router
+
+
 //= require react/list-browse-display
+
 
 Router.routes = (function() {
   var _login = function() {

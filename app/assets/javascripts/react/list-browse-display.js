@@ -8,7 +8,6 @@
 //= require react/pub-list-item
 //= require react/pub-inspect
 
-
 var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
   getInitialState: function(){
     return {
@@ -36,7 +35,7 @@ var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
 
   renderCreationFormButton: function(){
     return(
-      React.createElement("a", {href: "#", onCLick: this.toggleCreationForm}, 
+      React.createElement("a", {href: "#", onCLick: this.toggleCreationForm},
         this.state.creatingNew ? "Back" : "Create New Publication Record"
       )
     )
@@ -65,22 +64,22 @@ var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
       this.state.publications.forEach(function(pub){
         var thisPub = pub;
         publications.push(
-          React.createElement("li", {class: "list-group-item"}, 
+          React.createElement("li", {class: "list-group-item"},
             React.createElement(PubListItem, {key: thisPub.id, pub: thisPub, errors: this.state.errors})
           )
         )
       }.bind(this));
     }
     return(
-      React.createElement("div", null, 
+      React.createElement("div", null,
 
-        React.createElement("div", {className: "row"}, 
-          React.createElement("div", {id: "publications-display"}, 
-            React.createElement("h3", null, "list of publications"), 
-            this.renderCreationFormButton(), " |", 
-            React.createElement("a", {href: "#"}, " Search"), 
-            React.createElement("div", {className: "scrollyballz"}, 
-            React.createElement("ul", {className: "list-group"}, 
+        React.createElement("div", {className: "row"},
+          React.createElement("div", {id: "publications-display"},
+            React.createElement("h3", null, "list of publications"),
+            this.renderCreationFormButton(), " |",
+            React.createElement("a", {href: "#"}, " Search"),
+            React.createElement("div", {className: "scrollyballz"},
+            React.createElement("ul", {className: "list-group"},
                 publications
               )
             )
