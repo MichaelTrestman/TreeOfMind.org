@@ -37,7 +37,7 @@ var ListBrowseDisplay = React.createClass({
   renderCreationFormButton: function(){
     return(
       <a href="#" onCLick={this.toggleCreationForm}>
-        {this.state.creatingNew ? "Back" : "Create New Publication Record"}
+          {this.state.creatingNew ? "Back" : "Create New Publication Record"}
       </a>
     )
   },
@@ -76,6 +76,12 @@ var ListBrowseDisplay = React.createClass({
 
         <div className='row'>
           <div id='publications-display' >
+            <select>
+              <option>PublicationsStore</option>
+              <option>Taxa</option>
+              <option>Researchers</option>
+              <option>Topics</option>
+            </select>
             <h3>list of publications</h3>
             {this.renderCreationFormButton()} |
             <a href='#'> Search</a>

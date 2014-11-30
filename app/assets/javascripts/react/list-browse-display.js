@@ -8,6 +8,7 @@
 //= require react/pub-list-item
 //= require react/pub-inspect
 
+
 var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
   getInitialState: function(){
     return {
@@ -36,7 +37,7 @@ var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
   renderCreationFormButton: function(){
     return(
       React.createElement("a", {href: "#", onCLick: this.toggleCreationForm},
-        this.state.creatingNew ? "Back" : "Create New Publication Record"
+          this.state.creatingNew ? "Back" : "Create New Publication Record"
       )
     )
   },
@@ -75,6 +76,12 @@ var ListBrowseDisplay = React.createClass({displayName: 'ListBrowseDisplay',
 
         React.createElement("div", {className: "row"},
           React.createElement("div", {id: "publications-display"},
+            React.createElement("select", null,
+              React.createElement("option", null, "PublicationsStore"),
+              React.createElement("option", null, "Taxa"),
+              React.createElement("option", null, "Researchers"),
+              React.createElement("option", null, "Topics")
+            ),
             React.createElement("h3", null, "list of publications"),
             this.renderCreationFormButton(), " |",
             React.createElement("a", {href: "#"}, " Search"),

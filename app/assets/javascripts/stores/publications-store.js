@@ -10,28 +10,22 @@ var PublicationsStore = (function(){
   var FAIL_TO_CREATE_EVENT = 'creation-failed';
 
   return {
+    addChangeEvent: function(callback){
+      $(this).on(CHANGE_EVENT, callback);
+    },
+    addFailToTakeAction: function(callback){
+      $(this).on(FAIL_TO_CREATE_EVENT, callback);
+    },
+    triggerChange: function (data) {
+      $(this).trigger(CHANGE_EVENT, data);
+    },
+    triggerFailToTakeAction: function(data) {
+      $(this).trigger(FAIL_TO_CREATE_EVENT, data);
+    },
     activePub: function(){
       return _active_pub;
     },
-    // getTopics: function(){
-    //   $.ajax({
-    //     url: '/topics',
-    //     type: 'GET',
-    //     data: {
-    //       pub_id: _active_pub.id
-    //     }
-    //   })
-    //   .done(function(data){
-    //     //umm there's no controller as of now...
-    //   })
 
-    // },
-    getTaxa: function(){
-
-    },
-    getAuthors: function(){
-
-    },
     all: function(query){
        if (query==='undefined'){
         query = 'recent'
@@ -55,6 +49,10 @@ var PublicationsStore = (function(){
       console.log(_active_pub.topics)
       return _active_pub._topics
     },
+    authors: function(){
+      console.log(_active_pub.authors)
+      return _active_pub.authors
+    },
     new: function(){
       return {
         title: null,
@@ -64,18 +62,7 @@ var PublicationsStore = (function(){
         pub_metadata: null
       }
     },
-    addChangeEvent: function(callback){
-      $(this).on(CHANGE_EVENT, callback);
-    },
-    addFailToTakeAction: function(callback){
-      $(this).on(FAIL_TO_CREATE_EVENT, callback);
-    },
-    triggerChange: function (data) {
-      $(this).trigger(CHANGE_EVENT, data);
-    },
-    triggerFailToTakeAction: function(data) {
-      $(this).trigger(FAIL_TO_CREATE_EVENT, data);
-    },
+
     create: function(data){
       $.ajax({
         url: '/publications',
@@ -97,10 +84,12 @@ var PublicationsStore = (function(){
         data: {id: id}
       })
       .done(function(data){
-        _active_pub.topics = data.topics;
+        _active_pub = data
+        console.log(data)
+        // _active_pub.topics = data.topics;
+        this.triggerChange();
 
       }.bind(this))
-      this.triggerChange();
 
     },
     update: function(data){
@@ -110,6 +99,7 @@ var PublicationsStore = (function(){
         data: {pub: data}
       })
       .done(function(data){
+
         _active_pub = data
         _publications.forEach(function(pub, i){
           if (pub.id === data.id) {

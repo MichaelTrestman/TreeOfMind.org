@@ -53,12 +53,12 @@ var PubInspect = React.createClass({
       }
 
       var object = this.state.thisPub;
-      console.log(object)
+
       return (
         <FormFor object={ object } options = { options } errors = { [] } />
       )
     }
-    console.log(this.state.thisPub.topics)
+
     return (
       <div>
         <h3>Title: {this.state.thisPub.title}</h3>
@@ -75,19 +75,19 @@ var PubInspect = React.createClass({
           <div className='col-lg-3 infoPanel'>
             <ul>
               <p className='tagName'>taxa:</p>
-              {this.renderList(this.state.taxa)}
+              {this.renderList(this.state.thisPub.taxa)}
             </ul>
           </div>
           <div className='col-lg-3 infoPanel'>
             <ul>
               <p className='tagName'>authors:</p>
-              {this.renderList(this.state.authors)}
+              {this.renderList(this.state.thisPub.authors)}
             </ul>
           </div>
           <div className='col-lg-3 infoPanel'>
             <ul>
               <p className='tagName'>references:</p>
-              {this.renderList(this.state.references)}
+              {this.renderList(this.state.thisPub.references)}
             </ul>
           </div>
         </div>
@@ -97,26 +97,22 @@ var PubInspect = React.createClass({
     )
   },
   renderList: function (tags) {
-    console.log(tags)
     var tagList = [];
-    if (tags && tags.length > 1) {
-       console.log('constructing taglist')
+    if (tags && tags.length > 0) {
 
       tags.forEach(function(tag){
         var label
-        if(tag.title){ label = tag.title } else if (tag.name){ label = tag.name }
-          console.log('tag:')
-          console.log(tag)
+        if(tag.title){
+          label = "title" + tag.title
+        } else if (tag.first_name){
+          label = tag.first_name + " " + tag.last_name
+        }
         tagList.push(
           <li> { label }
           </li>
         )
-
       })
-
     };
-        console.log('tagList')
-        console.log(tagList)
     return tagList
   }
 })

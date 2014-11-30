@@ -2,12 +2,12 @@
  * @jsx React.DOM
  */
 
-
 //=require react
 //= require router
-
-
+//= require react/pub-inspect
+//= require react/author-inspect
 //= require react/list-browse-display
+
 
 
 Router.routes = (function() {
@@ -55,6 +55,14 @@ Router.routes = (function() {
       React.createElement(PubInspect, null), $('#inspectDisplay')[0]
     );
   }
+  var _inspect_author = function(){
+    React.unmountComponentAtNode(
+      $('#inspectDisplay')[0]
+    );
+    React.render(
+      React.createElement(AuthorInspect, null), $('#inspectDisplay')[0]
+    );
+  }
 
   return {
     "#login": _login,
@@ -63,7 +71,8 @@ Router.routes = (function() {
     // '#publications': _publications
     '#list_publications': _list_publications,
     '#inspect_publication':
-    _inspect_publication
+    _inspect_publication,
+    '#inspect_author': _inspect_author
   }
 }())
 

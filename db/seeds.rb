@@ -1,7 +1,27 @@
-20.times do
+firstnames = ['dingus', 'joe', 'mary', 'dorkerella']
+lastnames = ['smith', 'jackson', 'dorkenstein', 'blobface']
+firstnames.each do |fn|
+  Researcher.create({first_name: fn, last_name: lastnames.sample})
+end
+5.times do
+  Topic.create({
+    title: Faker::Lorem.sentence(rand(3)+1)
+  })
+end
+
+10.times do
 
   title = Faker::Lorem.sentence(rand(6)+1)
   abstract = Faker::Lorem.paragraph(rand(6)+1)
-  Publication.create({title: title, abstract: abstract})
+  x = Publication.create({title: title, abstract: abstract})
 
+  (rand(3)+1).times {
+    x.researchers << Researcher.all.sample
+
+  }
+  (rand(3)+1).times {
+    x.topics << Topic.all.sample
+  }
 end
+
+

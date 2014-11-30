@@ -11,15 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141118052041) do
+ActiveRecord::Schema.define(version: 20141122035042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "authorships", force: true do |t|
+    t.integer "researcher_id"
+    t.integer "publication_id"
+  end
+
   create_table "publications", force: true do |t|
     t.string   "title"
-    t.string   "author_first_name"
-    t.string   "author_last_name"
     t.text     "abstract"
     t.datetime "created_at"
     t.datetime "updated_at"
