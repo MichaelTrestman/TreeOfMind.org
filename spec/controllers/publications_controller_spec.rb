@@ -30,9 +30,7 @@ describe PublicationsController do
   end
 
   describe "GET#index" do
-
     context 'with no query' do
-
       it "returns the 20 most recently added publications" do
 
         get :index
@@ -43,6 +41,9 @@ describe PublicationsController do
         expect(pubbers.length).to be 5
 
       end
+    end
+    context 'with a query string' do
+
     end
 
   end
