@@ -5,7 +5,7 @@ var PublicationActions = {
     ToMDispatcher.handleViewAction({
       type: ToMConstants.DISPLAY_PUB,
       id: id
-    })
+    });
   },
   createPublication: function (data) {
     ToMDispatcher.handleViewAction({

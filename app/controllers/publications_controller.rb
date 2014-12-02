@@ -15,12 +15,14 @@ class PublicationsController < ApplicationController
   end
   def show
     topics = @publication.topics
+    authors = @publication.researchers
     # need to implement the below
     # taxons = @publication.taxons
 
     # distributions = @publication.distributions
     render :json => {
       topics: topics,
+      authors: authors,
       # distributions: distributions,
       # taxons: taxons
       publication: @publication

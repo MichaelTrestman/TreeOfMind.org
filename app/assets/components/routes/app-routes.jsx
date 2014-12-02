@@ -1,8 +1,14 @@
 /**
  * @jsx React.DOM
  */
+
+//=require react
 //= require router
-//= require react/publications-display
+//= require react/pub-inspect
+//= require react/author-inspect
+//= require react/list-browse-display
+
+
 
 Router.routes = (function() {
   var _login = function() {
@@ -30,16 +36,43 @@ Router.routes = (function() {
   }
   var _publications = function(){
     React.unmountComponentAtNode($('.inside-body-content-container')[0]);
-    React.render(<PublicationsDisplay/>, $('.inside-body-content-container')[0]);
+    React.render(<ListBrowseDisplay/>, $('.inside-body-content-container')[0]);
   }
+  var _list_publications = function(){
+    React.unmountComponentAtNode(
+        $('#listDisplay')[0]
+      );
+    React.render(
+      <ListBrowseDisplay/>, $('#listDisplay')[0]
+    );
 
+  }
+  var _inspect_publication = function(){
+    React.unmountComponentAtNode(
+        $('#inspectDisplay')[0]
+      );
+    React.render(
+      <PubInspect/>, $('#inspectDisplay')[0]
+    );
+  }
+  var _inspect_author = function(){
+    React.unmountComponentAtNode(
+      $('#inspectDisplay')[0]
+    );
+    React.render(
+      <AuthorInspect/>, $('#inspectDisplay')[0]
+    );
+  }
 
   return {
     "#login": _login,
     "#about-us": _about_us,
     "#contact-us": _contact_us,
-    '#publications': _publications
-
+    // '#publications': _publications
+    '#list_publications': _list_publications,
+    '#inspect_publication':
+    _inspect_publication,
+    '#inspect_author': _inspect_author
   }
 }())
 

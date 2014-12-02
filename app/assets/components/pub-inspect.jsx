@@ -12,7 +12,9 @@ var PubInspect = React.createClass({
       thisPub: null,
       editing: false,
       topics: [],
-      taxa: []
+      taxa: [],
+      authors: [],
+      references: []
     };
   },
   componentDidMount: function(){
@@ -27,6 +29,7 @@ var PubInspect = React.createClass({
         errors: data
       })
     }.bind(this));
+    PublicationsStore.display();
   },
   editPub: function(e){
     e.preventDefault();
@@ -50,25 +53,66 @@ var PubInspect = React.createClass({
       }
 
       var object = this.state.thisPub;
-      console.log(object)
+
       return (
         <FormFor object={ object } options = { options } errors = { [] } />
       )
     }
+
     return (
       <div>
         <h3>Title: {this.state.thisPub.title}</h3>
         <a href='#' onClick={this.editPub}>Edit | </a>
         <a href='#' onClick={this.delete}>delete</a>
         <p>Abstract: {this.state.thisPub.abstract}</p>
-        <ul><h4>topics:</h4>
-          {this.state.topics}
-        </ul>
-        <ul><h4>taxa:</h4>
-          {this.state.taxa}
-        </ul>
+        <div className='row'>
+          <div className='col-lg-3 infoPanel'>
+            <ul className='scrollyballz'>
+              <p className='tagName'>topics:</p>
+              {this.renderList(this.state.thisPub.topics)}
+            </ul>
+          </div>
+          <div className='col-lg-3 infoPanel'>
+            <ul>
+              <p className='tagName'>taxa:</p>
+              {this.renderList(this.state.thisPub.taxa)}
+            </ul>
+          </div>
+          <div className='col-lg-3 infoPanel'>
+            <ul>
+              <p className='tagName'>authors:</p>
+              {this.renderList(this.state.thisPub.authors)}
+            </ul>
+          </div>
+          <div className='col-lg-3 infoPanel'>
+            <ul>
+              <p className='tagName'>references:</p>
+              {this.renderList(this.state.thisPub.references)}
+            </ul>
+          </div>
+        </div>
+
+
       </div>
     )
+  },
+  renderList: function (tags) {
+    var tagList = [];
+    if (tags && tags.length > 0) {
 
+      tags.forEach(function(tag){
+        var label
+        if(tag.title){
+          label = "title" + tag.title
+        } else if (tag.first_name){
+          label = tag.first_name + " " + tag.last_name
+        }
+        tagList.push(
+          <li> { label }
+          </li>
+        )
+      })
+    };
+    return tagList
   }
 })
