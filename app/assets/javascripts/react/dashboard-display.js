@@ -1,84 +1,84 @@
-/**
- * @jsx React.DOM
- */
-//= require react
-//= require actions/publication-actions
-//= require form-for
-//= require stores/publications-store
+// /**
+//  * @jsx React.DOM
+//  */
+// //= require react
+// //= require actions/publication-actions
+// //= require form-for
+// //= require stores/publications-store
 
-//= require react/pub-list-item
-//= require react/pub-inspect
+// //= require react/pub-list-item
+// //= require react/pub-inspect
 
-var DashboardDisplay = React.createClass({displayName: 'DashboardDisplay',
-    getInitialState: function(){
-      return{
-        browsing: 'pubs',
-        inspecting: null
-      }
-    },
-    stuffToBrowse: {
-      pubs: function(){
-        return(
-          React.createElement(PubsList, null)
-        )
-      },
-      taxa: function(){
-        return(
-          React.createElement(TaxaList, null)
-        )
-      },
-      authors: function(){
-        return(
-          React.createElement(AuthorsList, null)
-        )
-      },
-      topics: function(){
-        return(
-          React.createElement(TopicsList, null)
-        )
-      }
-    },
-    thingToInspect: {
-      pub: function(){
-        return(
-          React.createElement(PubInspect, null/)
-        )
-      },
-      taxon: function(){
-        return(
-          React.createElement(TaxonInspect, null)
-        )
-      },
-      author: function(){
-        return(
-          React.createElement(AuthorInspect, null)
-        )
-      }
-    },
+// var DashboardDisplay = React.createClass({
+//     getInitialState: function(){
+//       return{
+//         browsing: 'pubs',
+//         inspecting: null
+//       }
+//     },
+//     stuffToBrowse: {
+//       pubs: function(){
+//         return(
+//           <PubsList />
+//         )
+//       },
+//       taxa: function(){
+//         return(
+//           <TaxaList />
+//         )
+//       },
+//       authors: function(){
+//         return(
+//           <AuthorsList />
+//         )
+//       },
+//       topics: function(){
+//         return(
+//           <TopicsList />
+//         )
+//       }
+//     },
+//     thingToInspect: {
+//       pub: function(){
+//         return(
+//           <PubInspect/ >
+//         )
+//       },
+//       taxon: function(){
+//         return(
+//           <TaxonInspect />
+//         )
+//       },
+//       author: function(){
+//         return(
+//           <AuthorInspect />
+//         )
+//       }
+//     },
 
-    render: function(){
+//     render: function(){
 
-      return(
-        React.createElement("div", {className: "row"}, 
-          React.createElement("h2", null, "Dashboard"), 
-          React.createElement("div", {id: "browse-display"}, 
-             stuffToBrowse[this.state.browsing]() 
-          ), 
-          React.createElement("div", {id: "inspect-display"}, 
-             thingToInspect[this.state.inspecting]() 
-          )
+//       return(
+//         <div className='row'>
+//           <h2>Dashboard</h2>
+//           <div id='browse-display'>
+//             { stuffToBrowse[this.state.browsing]() }
+//           </div>
+//           <div id='inspect-display'>
+//             { thingToInspect[this.state.inspecting]() }
+//           </div>
 
-        )
-
-
-      )
-    }
+//         </div>
 
 
+//       )
+//     }
 
 
 
 
 
 
-})
+
+
+// })

@@ -17,6 +17,7 @@ var ListBrowseDisplay = React.createClass({
       topics: [],
       authors: [],
       query: null,
+      searching: false,
       creatingNew: false,
       errors: []
     }
