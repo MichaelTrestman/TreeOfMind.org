@@ -49,7 +49,7 @@ var AuthorsStore = (function(){
         case ToMConstants.UPDATE_AUTHOR:
         this.update(action.data);
         break;
-
+        default:
       }
     }
 
