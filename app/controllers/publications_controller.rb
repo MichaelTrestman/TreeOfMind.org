@@ -3,8 +3,16 @@ class PublicationsController < ApplicationController
   before_action :find_publication, only: [:show, :update, :destroy]
 
   def index
-      render :json => Publication.limit(20)
+      if params[:query] == 'recent'
+        render :json => Publication.limit(20)
+      else
+        results = Publication.where('title LIKE :query', query: "%#{params[:query]}%" )
+        puts "********"
+        p results
+        render :json => results
+      end
   end
+
   def update
     publication = Publication.find params[:id]
     if publication.update_attributes publication_params

@@ -27,7 +27,9 @@ var PublicationsStore = (function(){
     },
 
     all: function(query){
-       if (query==='undefined'){
+       if (
+            !query
+          )            {
         query = 'recent'
        }
        $.ajax({
@@ -46,11 +48,9 @@ var PublicationsStore = (function(){
       return _publications;
     },
     topics: function(){
-      console.log(_active_pub.topics)
       return _active_pub._topics
     },
     authors: function(){
-      console.log(_active_pub.authors)
       return _active_pub.authors
     },
     new: function(){
@@ -85,6 +85,7 @@ var PublicationsStore = (function(){
       })
       .done(function(data){
         _active_pub = data
+        console.log('yo ajax finished heres tha data:')
         console.log(data)
         // _active_pub.topics = data.topics;
         this.triggerChange();

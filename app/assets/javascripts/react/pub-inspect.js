@@ -60,33 +60,33 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
     }
 
     return (
-      React.createElement("div", null,
-        React.createElement("h3", null, "Title: ", this.state.thisPub.title),
-        React.createElement("a", {href: "#", onClick: this.editPub}, "Edit | "),
-        React.createElement("a", {href: "#", onClick: this.delete}, "delete"),
-        React.createElement("p", null, "Abstract: ", this.state.thisPub.abstract),
-        React.createElement("div", {className: "row"},
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", {className: "scrollyballz"},
-              React.createElement("p", {className: "tagName"}, "topics:"),
+      React.createElement("div", null, 
+        React.createElement("h3", null, "Title: ", this.state.thisPub.title), 
+        React.createElement("a", {href: "#", onClick: this.editPub}, "Edit | "), 
+        React.createElement("a", {href: "#", onClick: this.delete}, "delete"), 
+        React.createElement("p", null, "Abstract: ", this.state.thisPub.abstract), 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("div", {className: "col-lg-3 infoPanel"}, 
+            React.createElement("ul", {className: "scrollyballz"}, 
+              React.createElement("p", {className: "tagName"}, "topics:"), 
               this.renderList(this.state.thisPub.topics)
             )
-          ),
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", null,
-              React.createElement("p", {className: "tagName"}, "taxa:"),
+          ), 
+          React.createElement("div", {className: "col-lg-3 infoPanel"}, 
+            React.createElement("ul", null, 
+              React.createElement("p", {className: "tagName"}, "taxa:"), 
               this.renderList(this.state.thisPub.taxa)
             )
-          ),
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", null,
-              React.createElement("p", {className: "tagName"}, "authors:"),
+          ), 
+          React.createElement("div", {className: "col-lg-3 infoPanel"}, 
+            React.createElement("ul", null, 
+              React.createElement("p", {className: "tagName"}, "authors:"), 
               this.renderList(this.state.thisPub.authors)
             )
-          ),
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", null,
-              React.createElement("p", {className: "tagName"}, "references:"),
+          ), 
+          React.createElement("div", {className: "col-lg-3 infoPanel"}, 
+            React.createElement("ul", null, 
+              React.createElement("p", {className: "tagName"}, "references:"), 
               this.renderList(this.state.thisPub.references)
             )
           )
@@ -108,7 +108,7 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
           label = tag.first_name + " " + tag.last_name
         }
         tagList.push(
-          React.createElement("li", null, " ", label
+          React.createElement("li", null, " ", label 
           )
         )
       })

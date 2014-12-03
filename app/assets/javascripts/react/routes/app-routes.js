@@ -6,7 +6,7 @@
 //= require router
 //= require react/pub-inspect
 //= require react/author-inspect
-//= require react/list-browse-display
+//= require react/pub-list-browse-display
 
 
 
@@ -43,7 +43,7 @@ Router.routes = (function() {
         $('#listDisplay')[0]
       );
     React.render(
-      React.createElement(ListBrowseDisplay, null), $('#listDisplay')[0]
+      React.createElement(PubListBrowseDisplay, null), $('#listDisplay')[0]
     );
 
   }
