@@ -11,6 +11,7 @@ var PubInspect = React.createClass({
     return {
       thisPub: null,
       editing: false,
+      // creating: false,
       topics: [],
       taxa: [],
       authors: [],
@@ -18,44 +19,67 @@ var PubInspect = React.createClass({
     };
   },
   componentDidMount: function(){
-    PublicationsStore.addChangeEvent(function(data){
-      if(this.isMounted()) this.setState({
-        editing:false,
-        thisPub: PublicationsStore.activePub()
-      });
-    }.bind(this))
-    PublicationsStore.addFailToTakeAction(function(e, data){
-      if(this.isMounted()) this.setState({
-        errors: data
-      })
-    }.bind(this));
-    PublicationsStore.display();
+    if (this.props.creating){
+      console.log('yooooo')
+
+    }else{
+      PublicationsStore.addChangeEvent(function(data){
+        if(this.isMounted()) this.setState({
+          editing:false,
+          thisPub: PublicationsStore.activePub()
+        });
+      }.bind(this))
+      PublicationsStore.addFailToTakeAction(function(e, data){
+        if(this.isMounted()) this.setState({
+          errors: data
+        })
+      }.bind(this));
+      PublicationsStore.display();
+    }
   },
   editPub: function(e){
     e.preventDefault();
     this.setState({ editing: true })
   },
-
   updatePub: function(data){
+    console.log('sending updatePub action')
     PublicationActions.updatePublication(data);
     this.setState({ editing: false })
   },
+  createPub: function(data){
+    console.log('sending createPub action');
+    PublicationActions.createPublication(data)
+  },
   render: function(){
-    if (!this.state.thisPub){
-      return (
-        <p>select a publication, researcher, or taxon to display info about it here</p>
-      )
-    }
+
     if (this.state.editing){
       var options = {
         onSubmit: this.updatePub,
         abstract: {type: 'textarea'}
       }
-
       var object = this.state.thisPub;
 
       return (
-        <FormFor object={ object } options = { options } errors = { [] } />
+        <div>
+          <h3>editing form!!</h3>
+          <FormFor object={ object } options = { options } errors = { [] } />
+        </div>
+      )
+    } else if (this.props.creating) {
+      var options = {
+        onSubmit: this.createPub,
+        abstract: { type: 'textarea' }
+      }
+      var object =  PublicationsStore.newPublication()
+      return (
+        <div>
+          <h3>creation form!</h3>
+          <FormFor object={object} options = {options} errors = {[]}/>
+        </div>
+      )
+    } else if (!this.state.thisPub){
+      return (
+        <p>select a publication, researcher, or taxon to display info about it here</p>
       )
     }
 
@@ -96,6 +120,7 @@ var PubInspect = React.createClass({
       </div>
     )
   },
+
   renderList: function (tags) {
     var tagList = [];
     if (tags && tags.length > 0) {

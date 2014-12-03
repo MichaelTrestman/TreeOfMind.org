@@ -6,11 +6,30 @@ class PublicationsController < ApplicationController
       if params[:query] == 'recent'
         render :json => Publication.limit(20)
       else
-        results = Publication.where('abstract LIKE :query_downcase OR abstract LIKE :query_capitalize', query_downcase: "%#{params[:query].downcase}%", query_capitalize: "%#{params[:query].capitalize}%" )
-        puts "********"
-        p results
+        results = Publication.where('
+          abstract LIKE :query_downcase
+          OR
+          abstract LIKE :query_capitalize
+          OR
+          abstract LIKE :query_upcase
+          OR
+          title LIKE :query_downcase
+          OR
+          title LIKE :query_capitalize
+          OR
+          title LIKE :query_upcase
+          ', query_downcase: "%#{params[:query].downcase}%", query_capitalize: "%#{params[:query].capitalize}%" ,
+            query_upcase: "%#{params[:query].upcase}%" )
         render :json => results
       end
+  end
+  def create
+    pubber = Publication.new publication_params
+    if pubber.save
+      render :json => pubber
+    else
+      render :json => {message: 'oh shit creation failed'}
+    end
   end
 
   def update
@@ -48,6 +67,6 @@ class PublicationsController < ApplicationController
   end
 
   def publication_params
-    params.require(:pub).permit(:title, :abstract, :author_first_name, :author_last_name)
+    params.require(:pub).permit(:title, :abstract)
   end
 end

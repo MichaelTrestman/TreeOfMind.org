@@ -13,11 +13,10 @@ var PubListBrowseDisplay = React.createClass({
   getInitialState: function(){
     return {
       pubs: [],
-      taxa: [],
-      topics: [],
-      authors: [],
+      // taxa: [],
+      // topics: [],
+      // authors: [],
       query: null,
-      searching: false,
       creatingNew: false,
       errors: []
     }
@@ -37,13 +36,16 @@ var PubListBrowseDisplay = React.createClass({
 
   renderCreationFormButton: function(){
     return(
-      <a href="#" onCLick={this.toggleCreationForm}>
-          {this.state.creatingNew ? "Back" : "Create New Publication Record"}
+      <a href="#new_publication"
+      >
+
+      Create New Publication Record
       </a>
     )
   },
 
   renderCreationForm: function(){
+    console.log('rendering creation form')
     if(!this.state.creatingNew) return;
     var options ={
       onSubmit: this.createPublication,
@@ -55,6 +57,7 @@ var PubListBrowseDisplay = React.createClass({
   },
   toggleCreationForm: function(e){
     e.preventDefault();
+    console.log('toggling creation form')
     this.setState({creatingNew: !this.state.creatingNew})
   },
   createPublication: function(data){
@@ -62,7 +65,6 @@ var PubListBrowseDisplay = React.createClass({
   },
   updateQuery: function(e){
     var query = e.target.value
-    console.log(query)
     this.setState({ query: query })
     PublicationsStore.all(query)
   },

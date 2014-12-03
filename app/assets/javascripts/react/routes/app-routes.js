@@ -4,9 +4,11 @@
 
 //=require react
 //= require router
-//= require react/pub-inspect
-//= require react/author-inspect
 //= require react/pub-list-browse-display
+//= require react/pub-inspect
+//= require react/author-list-browse-display
+//= require react/author-inspect
+//= require react/pub-creation-form
 
 
 
@@ -34,10 +36,10 @@ Router.routes = (function() {
     React.unmountComponentAtNode($('.inside-body-content-container')[0]);
     React.render(React.createElement(DonationPurchaseForm, null), $('.inside-body-content-container')[0]);
   }
-  var _publications = function(){
-    React.unmountComponentAtNode($('.inside-body-content-container')[0]);
-    React.render(React.createElement(ListBrowseDisplay, null), $('.inside-body-content-container')[0]);
-  }
+  // var _publications = function(){
+  //   React.unmountComponentAtNode($('.inside-body-content-container')[0]);
+  //   React.render(<ListBrowseDisplay/>, $('.inside-body-content-container')[0]);
+  // }
   var _list_publications = function(){
     React.unmountComponentAtNode(
         $('#listDisplay')[0]
@@ -45,7 +47,14 @@ Router.routes = (function() {
     React.render(
       React.createElement(PubListBrowseDisplay, null), $('#listDisplay')[0]
     );
-
+  }
+  var _list_authors = function(){
+    React.unmountComponentAtNode(
+      $('#listDisplay')[0]
+    );
+    React.render(
+      React.createElement(AuthorListBrowseDisplay, null), $('#listDisplay')[0]
+    );
   }
   var _inspect_publication = function(){
     React.unmountComponentAtNode(
@@ -54,6 +63,15 @@ Router.routes = (function() {
     React.render(
       React.createElement(PubInspect, null), $('#inspectDisplay')[0]
     );
+  }
+  var _new_publication = function(){
+    React.unmountComponentAtNode(
+      $('#inspectDisplay')[0]
+    );
+    var newForm = React.render(
+      React.createElement(PubInspect, {creating: true }), $('#inspectDisplay')[0]
+    );
+
   }
   var _inspect_author = function(){
     React.unmountComponentAtNode(
@@ -70,9 +88,10 @@ Router.routes = (function() {
     "#contact-us": _contact_us,
     // '#publications': _publications
     '#list_publications': _list_publications,
-    '#inspect_publication':
-    _inspect_publication,
-    '#inspect_author': _inspect_author
+    '#inspect_publication': _inspect_publication,
+    '#list_authors': _list_authors,
+    '#inspect_author': _inspect_author,
+    '#new_publication': _new_publication
   }
 }())
 

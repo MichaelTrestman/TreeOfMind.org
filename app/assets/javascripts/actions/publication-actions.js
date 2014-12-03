@@ -3,7 +3,7 @@
 var PublicationActions = {
   displayPublication: function(id) {
     ToMDispatcher.handleViewAction({
-      type: ToMConstants.DISPLAY_PUB,
+      type: ToMConstants.DISPLAY_PUBLICATION,
       id: id
     });
   },

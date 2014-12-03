@@ -10,6 +10,7 @@ var PublicationsStore = (function(){
   var FAIL_TO_CREATE_EVENT = 'creation-failed';
 
   return {
+
     addChangeEvent: function(callback){
       $(this).on(CHANGE_EVENT, callback);
     },
@@ -24,6 +25,12 @@ var PublicationsStore = (function(){
     },
     activePub: function(){
       return _active_pub;
+    },
+    newPublication: function(){
+      return{
+        title: null,
+        abstract: null
+      }
     },
 
     all: function(query){
@@ -53,25 +60,7 @@ var PublicationsStore = (function(){
     authors: function(){
       return _active_pub.authors
     },
-    new: function(){
-      return {
-        title: null,
-        authorFirstName: null,
-        authorLastName: null,
-        abstract: null,
-        pub_metadata: null
-      }
-    },
 
-    create: function(data){
-      $.ajax({
-        url: '/publications',
-        type: 'POST',
-        data: {
-
-        }
-      })
-    },
     display: function(id){
       _publications.forEach(function(pub){
         if(id===pub.id){
@@ -85,22 +74,29 @@ var PublicationsStore = (function(){
       })
       .done(function(data){
         _active_pub = data
-        console.log('yo ajax finished heres tha data:')
-        console.log(data)
-        // _active_pub.topics = data.topics;
         this.triggerChange();
-
       }.bind(this))
-
+    },
+    create: function(data){
+      console.log('firing create ajax')
+      $.ajax({
+        url: '/publications',
+        type: 'POST',
+        data: {pub: data}
+      })
+      .done(function(data){
+        console.log(data)
+        this.triggerChange();
+      }.bind(this))
     },
     update: function(data){
+      console.log('firing update ajax')
       $.ajax({
         url: '/publications/' + data.id,
         type: 'PUT',
         data: {pub: data}
       })
       .done(function(data){
-
         _active_pub = data
         _publications.forEach(function(pub, i){
           if (pub.id === data.id) {
@@ -113,12 +109,16 @@ var PublicationsStore = (function(){
     payload: function(payload){
       var action = payload.action;
       switch(action.type){
-        case ToMConstants.DISPLAY_PUB:
+        case ToMConstants.DISPLAY_PUBLICATION:
           this.display(action.id);
           break;
         case ToMConstants.UPDATE_PUBLICATION:
           this.update(action.data);
           break;
+        case ToMConstants.CREATE_PUBLICATION:
+          this.create(action.data);
+          break;
+        default:
       }
     }
 
