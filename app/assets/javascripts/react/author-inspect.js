@@ -54,14 +54,14 @@ var AuthorInspect = React.createClass({displayName: 'AuthorInspect',
 
       }
       return (
-        React.createElement("div", null,
-          React.createElement("h3", null, "Name: ", this.state.thisAuthor.name),
-          React.createElement("a", {href: "#", onClick: this.editAuthor}, "Edit | "),
-          React.createElement("a", {href: "#", onClick: this.delete}, "delete"),
-          React.createElement("div", {className: "row"},
-            React.createElement("div", {className: "col-lg-3 infoPanel"},
-              React.createElement("ul", {className: "scrollyballz"},
-                React.createElement("p", {className: "tagName"}, "publications:"),
+        React.createElement("div", null, 
+          React.createElement("h3", null, "Name: ", this.state.thisAuthor.name), 
+          React.createElement("a", {href: "#", onClick: this.editAuthor}, "Edit | "), 
+          React.createElement("a", {href: "#", onClick: this.delete}, "delete"), 
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "col-lg-3 infoPanel"}, 
+              React.createElement("ul", {className: "scrollyballz"}, 
+                React.createElement("p", {className: "tagName"}, "publications:"), 
                 this.renderList(this.state.thisAuthor.pubs)
               )
             )
@@ -81,7 +81,7 @@ var AuthorInspect = React.createClass({displayName: 'AuthorInspect',
           label = tag.first_name + " " + tag.last_name
         }
         tagList.push(
-          React.createElement("li", null, " ", label
+          React.createElement("li", null, " ", label 
           )
         )
       })
