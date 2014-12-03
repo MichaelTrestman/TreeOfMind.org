@@ -82,13 +82,14 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
         React.createElement("p", null, "select a publication, researcher, or taxon to display info about it here")
       )
     }
-
     return (
       React.createElement("div", null,
-        React.createElement("h3", null, "Title: ", this.state.thisPub.title),
+        React.createElement("h3", null, "Title: ",
+          this.state.thisPub.publication ? this.state.thisPub.publication.title : 'none selected'
+        ),
         React.createElement("a", {href: "#", onClick: this.editPub}, "Edit | "),
         React.createElement("a", {href: "#", onClick: this.delete}, "delete"),
-        React.createElement("p", null, "Abstract: ", this.state.thisPub.abstract),
+        React.createElement("p", null, "Abstract: ", this.state.thisPub.publication ? this.state.thisPub.publication.abstract : 'none selected'),
         React.createElement("div", {className: "row"},
           React.createElement("div", {className: "col-lg-3 infoPanel"},
             React.createElement("ul", {className: "scrollyballz"},

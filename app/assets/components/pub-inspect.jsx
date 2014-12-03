@@ -82,13 +82,14 @@ var PubInspect = React.createClass({
         <p>select a publication, researcher, or taxon to display info about it here</p>
       )
     }
-
     return (
       <div>
-        <h3>Title: {this.state.thisPub.title}</h3>
+        <h3>Title: {
+          this.state.thisPub.publication ? this.state.thisPub.publication.title : 'none selected'
+        }</h3>
         <a href='#' onClick={this.editPub}>Edit | </a>
         <a href='#' onClick={this.delete}>delete</a>
-        <p>Abstract: {this.state.thisPub.abstract}</p>
+        <p>Abstract: {this.state.thisPub.publication ? this.state.thisPub.publication.abstract : 'none selected'}</p>
         <div className='row'>
           <div className='col-lg-3 infoPanel'>
             <ul className='scrollyballz'>
