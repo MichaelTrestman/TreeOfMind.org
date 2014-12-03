@@ -6,7 +6,7 @@ class PublicationsController < ApplicationController
       if params[:query] == 'recent'
         render :json => Publication.limit(20)
       else
-        results = Publication.where('title LIKE :query', query: "%#{params[:query]}%" )
+        results = Publication.where('abstract LIKE :query_downcase OR abstract LIKE :query_capitalize', query_downcase: "%#{params[:query].downcase}%", query_capitalize: "%#{params[:query].capitalize}%" )
         puts "********"
         p results
         render :json => results
