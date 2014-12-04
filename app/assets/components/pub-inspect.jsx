@@ -19,9 +19,7 @@ var PubInspect = React.createClass({
     };
   },
   componentDidMount: function(){
-    if (this.props.creating){
-      console.log('yooooo')
-    }else{
+    if (this.props.creating){}else{
       PublicationsStore.addChangeEvent(function(data){
         if(this.isMounted()) this.setState({
           editing: false,
@@ -72,7 +70,6 @@ var PubInspect = React.createClass({
         title: this.state.thisPub.publication.title,
         abstract: this.state.thisPub.publication.abstract
       };
-      console.log(object)
       return (
         <div>
           <h3>editing form!!</h3>

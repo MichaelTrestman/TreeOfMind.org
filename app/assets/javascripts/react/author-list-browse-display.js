@@ -43,7 +43,7 @@ var AuthorListBrowseDisplay = React.createClass({displayName: 'AuthorListBrowseD
         onSubmit: this.createAuthor
       }
       return (
-        React.createElement(FormFor, {object:  AuthorsStore.newAuthor(), options: options, errors:  this.state.errors})
+        React.createElement("a", {href: "#new_author"}, "Create New Author Record")
       )
     },
     toggleCreationForm: function(e){

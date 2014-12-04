@@ -4,7 +4,7 @@
 var AuthorsStore = (function(){
   var _authors = [];
   var _active_author = {};
-  _active_author.publications = [];
+  var _active_author_pubs = [];
   var CHANGE_EVENT = 'change';
   var FAIL_TO_CREATE_EVENT = 'creation-failed';
 
@@ -23,6 +23,9 @@ var AuthorsStore = (function(){
     },
     activeAuthor: function(){
       return _active_author;
+    },
+    activeAuthorPubs: function(){
+      return _active_author_pubs;
     },
     authors: function(){
       return _authors;
@@ -44,6 +47,26 @@ var AuthorsStore = (function(){
         this.triggerChange();
       }.bind(this))
     },
+
+    display: function(id){
+      _authors.forEach(function(author){
+          if(id===author.id){
+            _active_author = author
+          }
+      });
+      $.ajax({
+        url: '/researchers/' + id,
+        type: 'GET',
+        data: {id: id}
+      })
+      .done(function(data){
+        console.log(data)
+        _active_author = data.researcher
+        _active_author_pubs = data.pubs
+        this.triggerChange();
+      }.bind(this))
+    },
+
     payload: function(payload){
       var action = payload.action;
       switch(action.type){
@@ -51,8 +74,8 @@ var AuthorsStore = (function(){
           this.display(action.id);
           break;
         case ToMConstants.UPDATE_AUTHOR:
-        this.update(action.data);
-        break;
+          this.update(action.data);
+          break;
         default:
       }
     }

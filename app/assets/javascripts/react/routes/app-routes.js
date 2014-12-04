@@ -75,6 +75,15 @@ Router.routes = (function() {
     );
 
   }
+  var _new_author = function(){
+    React.unmountComponentAtNode(
+        $('#inspectDisplay')[0]
+      );
+    React.render(
+      React.createElement(AuthorInspect, {creating: true}), $('#inspectDisplay')[0]
+    );
+  }
+
   var _inspect_author = function(){
     React.unmountComponentAtNode(
       $('#inspectDisplay')[0]
@@ -91,10 +100,10 @@ Router.routes = (function() {
     // '#publications': _publications
     '#list_publications': _list_publications,
     '#inspect_publication': _inspect_publication,
+    '#new_publication': _new_publication,
     '#list_authors': _list_authors,
     '#inspect_author': _inspect_author,
-    '#new_publication': _new_publication,
-    '#authors_list_display': _list_authors
+    '#new_author': _new_author
   }
 }())
 

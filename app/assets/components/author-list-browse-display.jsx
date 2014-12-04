@@ -43,7 +43,7 @@ var AuthorListBrowseDisplay = React.createClass({
         onSubmit: this.createAuthor
       }
       return (
-        <FormFor object={ AuthorsStore.newAuthor() } options = { options } errors = { this.state.errors } />
+        <a href='#new_author'>Create New Author Record</a>
       )
     },
     toggleCreationForm: function(e){
