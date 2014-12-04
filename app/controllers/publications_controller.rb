@@ -4,7 +4,7 @@ class PublicationsController < ApplicationController
 
   def index
       if params[:query] == 'recent'
-        render :json => Publication.limit(20)
+        render :json => Publication.all
       else
         results = Publication.where('
           abstract LIKE :query_downcase
@@ -57,7 +57,9 @@ class PublicationsController < ApplicationController
 
   end
   def destroy
-
+    pubber = Publication.find params[:id]
+    pubber.destroy
+    render :json => pubber
   end
 
   private

@@ -21,14 +21,14 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
   componentDidMount: function(){
     if (this.props.creating){
       console.log('yooooo')
-
     }else{
       PublicationsStore.addChangeEvent(function(data){
         if(this.isMounted()) this.setState({
-          editing:false,
+          editing: false,
           thisPub: PublicationsStore.activePub()
         });
       }.bind(this))
+
       PublicationsStore.addFailToTakeAction(function(e, data){
         if(this.isMounted()) this.setState({
           errors: data
@@ -37,8 +37,7 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
       PublicationsStore.display();
     }
   },
-  editPub: function(e){
-    e.preventDefault();
+  editPub: function(){
     this.setState({ editing: true })
   },
   updatePub: function(data){
@@ -48,7 +47,22 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
   },
   createPub: function(data){
     console.log('sending createPub action');
+    console.log(data)
     PublicationActions.createPublication(data)
+    PublicationActions.displayPublication(data)
+
+  },
+  deletePub: function(){
+    if(
+        confirm('do you frlz want to delete this pub?')
+      )
+    {
+      PublicationActions.destroyPublication(this.state.thisPub.publication.id);
+      PublicationsStore.noPub()
+      this.setState({
+        thisPub: null
+      })
+    }
   },
   render: function(){
 
@@ -57,20 +71,24 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
         onSubmit: this.updatePub,
         abstract: {type: 'textarea'}
       }
-      var object = this.state.thisPub;
-
+      var object = {
+        title: this.state.thisPub.publication.title,
+        abstract: this.state.thisPub.publication.abstract
+      };
+      console.log(object)
       return (
         React.createElement("div", null,
           React.createElement("h3", null, "editing form!!"),
           React.createElement(FormFor, {object: object, options: options, errors: [] })
         )
       )
-    } else if (this.props.creating) {
+    } else if (this.props.creating===true) {
       var options = {
         onSubmit: this.createPub,
         abstract: { type: 'textarea' }
       }
       var object =  PublicationsStore.newPublication()
+
       return (
         React.createElement("div", null,
           React.createElement("h3", null, "creation form!"),
@@ -81,45 +99,45 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
       return (
         React.createElement("p", null, "select a publication, researcher, or taxon to display info about it here")
       )
-    }
-    return (
-      React.createElement("div", null,
-        React.createElement("h3", null, "Title: ",
-          this.state.thisPub.publication ? this.state.thisPub.publication.title : 'none selected'
-        ),
-        React.createElement("a", {href: "#", onClick: this.editPub}, "Edit | "),
-        React.createElement("a", {href: "#", onClick: this.delete}, "delete"),
-        React.createElement("p", null, "Abstract: ", this.state.thisPub.publication ? this.state.thisPub.publication.abstract : 'none selected'),
-        React.createElement("div", {className: "row"},
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", {className: "scrollyballz"},
-              React.createElement("p", {className: "tagName"}, "topics:"),
-              this.renderList(this.state.thisPub.topics)
-            )
+    } else {
+      return (
+        React.createElement("div", null,
+          React.createElement("h3", null, "Title: ",
+            this.state.thisPub.publication ? this.state.thisPub.publication.title : 'none selected'
           ),
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", null,
-              React.createElement("p", {className: "tagName"}, "taxa:"),
-              this.renderList(this.state.thisPub.taxa)
-            )
-          ),
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", null,
-              React.createElement("p", {className: "tagName"}, "authors:"),
-              this.renderList(this.state.thisPub.authors)
-            )
-          ),
-          React.createElement("div", {className: "col-lg-3 infoPanel"},
-            React.createElement("ul", null,
-              React.createElement("p", {className: "tagName"}, "references:"),
-              this.renderList(this.state.thisPub.references)
+          React.createElement("button", {onClick: this.editPub}, "Edit"),
+          React.createElement("button", {onClick: this.deletePub}, " Delete "),
+          React.createElement("p", null, "Abstract: ", this.state.thisPub.publication ? this.state.thisPub.publication.abstract : 'none selected'),
+          React.createElement("div", {className: "row"},
+            React.createElement("div", {className: "col-lg-3 infoPanel"},
+              React.createElement("ul", {className: "scrollyballz"},
+                React.createElement("p", {className: "tagName"}, "topics:"),
+                this.renderList(this.state.thisPub.topics)
+              )
+            ),
+            React.createElement("div", {className: "col-lg-3 infoPanel"},
+              React.createElement("ul", null,
+                React.createElement("p", {className: "tagName"}, "taxa:"),
+                this.renderList(this.state.thisPub.taxa)
+              )
+            ),
+            React.createElement("div", {className: "col-lg-3 infoPanel"},
+              React.createElement("ul", null,
+                React.createElement("p", {className: "tagName"}, "authors:"),
+                this.renderList(this.state.thisPub.authors)
+              )
+            ),
+            React.createElement("div", {className: "col-lg-3 infoPanel"},
+              React.createElement("ul", null,
+                React.createElement("p", {className: "tagName"}, "references:"),
+                this.renderList(this.state.thisPub.references)
+              )
             )
           )
         )
-
-
       )
-    )
+    }
+
   },
 
   renderList: function (tags) {

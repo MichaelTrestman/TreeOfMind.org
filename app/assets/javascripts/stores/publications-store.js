@@ -60,6 +60,10 @@ var PublicationsStore = (function(){
     authors: function(){
       return _active_pub.authors
     },
+    noPub: function(){
+      _active_pub = {};
+      this.triggerChange();
+    },
 
     display: function(id){
       _publications.forEach(function(pub){
@@ -105,6 +109,26 @@ var PublicationsStore = (function(){
           return this.triggerChange();
         }.bind(this))
       }.bind(this))
+      .fail(console.log('shit updating failed'))
+    },
+    destroy: function(id){
+      $.ajax({
+        url: '/publications/' + id,
+        type: 'DELETE',
+        data: {id: id}
+      })
+      .done(function(data){
+        console.log(data)
+        _publications.forEach(function(pub, i){
+          if (pub.id===id) {
+            console.log('splicing that shit mang')
+            _publications.splice(i, 1)
+          };
+        })
+        this.triggerChange();
+      }.bind(this))
+      .fail( function(){console.log('shit deletion failed')})
+
     },
     payload: function(payload){
       var action = payload.action;
@@ -117,6 +141,9 @@ var PublicationsStore = (function(){
           break;
         case ToMConstants.CREATE_PUBLICATION:
           this.create(action.data);
+          break;
+        case ToMConstants.DESTROY_PUBLICATION:
+          this.destroy(action.id);
           break;
         default:
       }

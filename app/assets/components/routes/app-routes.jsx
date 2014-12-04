@@ -8,7 +8,7 @@
 //= require react/pub-inspect
 //= require react/author-list-browse-display
 //= require react/author-inspect
-//= require react/pub-creation-form
+
 
 
 
@@ -68,7 +68,7 @@ Router.routes = (function() {
     React.unmountComponentAtNode(
       $('#inspectDisplay')[0]
     );
-    var newForm = React.render(
+    React.render(
       <PubInspect creating={ true }/>, $('#inspectDisplay')[0]
     );
 
