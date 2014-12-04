@@ -46,10 +46,7 @@ var PubInspect = React.createClass({
     this.setState({ editing: false })
   },
   createPub: function(data){
-    console.log('sending createPub action');
-    console.log(data)
     PublicationActions.createPublication(data)
-    PublicationActions.displayPublication(data)
 
   },
   deletePub: function(){
