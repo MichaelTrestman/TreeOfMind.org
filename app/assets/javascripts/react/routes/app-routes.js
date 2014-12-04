@@ -1,3 +1,4 @@
+
 /**
  * @jsx React.DOM
  */
@@ -9,10 +10,8 @@
 //= require react/author-list-browse-display
 //= require react/author-inspect
 
-
-
-
 Router.routes = (function() {
+
   var _login = function() {
     React.unmountComponentAtNode($('.inside-body-content-container')[0]);
     React.render(React.createElement(LoginSignup, null), $('.inside-body-content-container')[0]);
@@ -22,6 +21,7 @@ Router.routes = (function() {
     React.unmountComponentAtNode($(".inside-body-content-container")[0]);
     React.render( React.createElement(Page, {size: "single", url: window.location.href.split('#')[1]}), $(".inside-body-content-container")[0]);
   };
+
   var _contact_us = function() {
     React.unmountComponentAtNode($(".inside-body-content-container")[0]);
     React.render( React.createElement(Page, {size: "single", url: window.location.href.split('#')[1]}), $(".inside-body-content-container")[0]);
@@ -56,6 +56,7 @@ Router.routes = (function() {
       React.createElement(AuthorListBrowseDisplay, null), $('#listDisplay')[0]
     );
   }
+
   var _inspect_publication = function(){
     React.unmountComponentAtNode(
         $('#inspectDisplay')[0]
@@ -64,6 +65,7 @@ Router.routes = (function() {
       React.createElement(PubInspect, null), $('#inspectDisplay')[0]
     );
   }
+
   var _new_publication = function(){
     React.unmountComponentAtNode(
       $('#inspectDisplay')[0]
@@ -91,7 +93,8 @@ Router.routes = (function() {
     '#inspect_publication': _inspect_publication,
     '#list_authors': _list_authors,
     '#inspect_author': _inspect_author,
-    '#new_publication': _new_publication
+    '#new_publication': _new_publication,
+    '#authors_list_display': _list_authors
   }
 }())
 
