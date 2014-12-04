@@ -60,9 +60,8 @@ var AuthorsStore = (function(){
         data: {id: id}
       })
       .done(function(data){
-        console.log(data)
         _active_author = data.researcher
-        _active_author_pubs = data.pubs
+        _active_author_pubs = data.publications
         this.triggerChange();
       }.bind(this))
     },

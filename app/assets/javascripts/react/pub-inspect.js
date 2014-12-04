@@ -137,18 +137,18 @@ var PubInspect = React.createClass({displayName: 'PubInspect',
   renderList: function (tags) {
     var tagList = [];
     if (tags && tags.length > 0) {
-
       tags.forEach(function(tag){
-        var label
         if(tag.title){
-          label = "title" + tag.title
-        } else if (tag.first_name){
-          label = tag.first_name + " " + tag.last_name
-        }
-        tagList.push(
-          React.createElement("li", null, " ", label
+          tagList.push(
+            React.createElement("li", {class: "list-group-item"},
+            React.createElement(PubListItem, {key: tag.id, pub: tag, errors: []})
           )
-        )
+          )
+        } else if (tag.first_name){
+          tagList.push(
+            React.createElement(AuthorListItem, {key: tag.id, author: tag, errors: []})
+            )
+          }
       })
     };
     return tagList
