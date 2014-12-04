@@ -17,10 +17,23 @@ var AuthorListBrowseDisplay = React.createClass({displayName: 'AuthorListBrowseD
         creatingNew: false
       }
     },
+    componentDidMount: function(){
+      AuthorsStore.addChangeEvent(function(){
+        console.log('responding to authorslist change!')
+        if(this.isMounted()) this.setState({
+          authors: AuthorsStore.authors(),
+          creatingNew: false
+        });
+      }.bind(this))
+      AuthorsStore.addFailToTakeAction(function(e, data){
+        if(this.isMounted()) this.setState({ errors: data })
+      }.bind(this))
+      AuthorsStore.all()
+    },
     renderCreationFormButton: function(){
       return(
-        React.createElement("a", {href: "#", onCLick: this.toggleCreationForm},
-          this.state.creatingNew ? "Back" : "Create New Author Record"
+        React.createElement("a", {href: "#new_author"},
+          "Create New Author Record"
         )
       )
     },
@@ -47,21 +60,42 @@ var AuthorListBrowseDisplay = React.createClass({displayName: 'AuthorListBrowseD
       this.setState({ query: query })
       AuthorsStore.all(query)
     },
-    componentDidMount: function(){
-      AuthorsStore.addChangeEvent(function(){
-        if(this.isMounted()) this.setState({
-          authors: AuthorsStore.authors(),
-          creatingNew: false
-        });
-      }.bind(this))
-      AuthorsStore.addFailToTakeAction(function(e, data){
-        if(this.isMounted()) this.setState({ errors: data })
-      }.bind(this))
-      PublicationsStore.all()
-    },
+
     render: function(){
+      authors = [];
+      if(this.state.authors){
+        this.state.authors.forEach(
+          function(author){
+            var thisAuthor = author;
+            authors.push(
+              React.createElement("li", null,
+                React.createElement(AuthorListItem, {key: thisAuthor.id, author: thisAuthor, errors: this.state.errors})
+              )
+            )
+          }.bind(this)
+        )
+      };
       return(
-        React.createElement("div", null, "shwaaaat??!")
+        React.createElement("div", null,
+          React.createElement("div", {className: "row"},
+            React.createElement("div", {id: "authors-display"},
+              React.createElement("a", {href: "#list_taxa"}, "Taxa  |"),
+              React.createElement("a", {href: "#list_publications"}, "  Publications  |"),
+              React.createElement("a", {href: "#list_topics"}, "  Topics"),
+              React.createElement("h3", null, "Authors"),
+              this.renderCreationFormButton(),
+              React.createElement("div", null,
+                "Search Query",
+                React.createElement("input", {onChange: this.updateQuery, type: "text"})
+              ),
+              React.createElement("div", {className: "scrollyballz"},
+                React.createElement("ul", {className: "list-group"},
+                  authors
+                )
+              )
+            )
+          )
+        )
       )
     }
 })
