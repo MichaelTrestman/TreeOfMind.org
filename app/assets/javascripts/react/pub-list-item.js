@@ -8,7 +8,7 @@
 
 var PubListItem = React.createClass({displayName: 'PubListItem',
 
-  render: function  () {
+  render: function(){
 
     var thisPub = this.props.pub
     return (

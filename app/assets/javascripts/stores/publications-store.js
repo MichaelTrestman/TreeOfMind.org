@@ -10,6 +10,7 @@ var PublicationsStore = (function(){
   var FAIL_TO_CREATE_EVENT = 'creation-failed';
 
   return {
+
     addChangeEvent: function(callback){
       $(this).on(CHANGE_EVENT, callback);
     },
@@ -25,9 +26,17 @@ var PublicationsStore = (function(){
     activePub: function(){
       return _active_pub;
     },
+    newPublication: function(){
+      return{
+        title: null,
+        abstract: null
+      }
+    },
 
     all: function(query){
-       if (query==='undefined'){
+       if (
+            !query
+          )            {
         query = 'recent'
        }
        $.ajax({
@@ -46,32 +55,16 @@ var PublicationsStore = (function(){
       return _publications;
     },
     topics: function(){
-      console.log(_active_pub.topics)
       return _active_pub._topics
     },
     authors: function(){
-      console.log(_active_pub.authors)
       return _active_pub.authors
     },
-    new: function(){
-      return {
-        title: null,
-        authorFirstName: null,
-        authorLastName: null,
-        abstract: null,
-        pub_metadata: null
-      }
+    noPub: function(){
+      _active_pub = {};
+      this.triggerChange();
     },
 
-    create: function(data){
-      $.ajax({
-        url: '/publications',
-        type: 'POST',
-        data: {
-
-        }
-      })
-    },
     display: function(id){
       _publications.forEach(function(pub){
         if(id===pub.id){
@@ -85,21 +78,29 @@ var PublicationsStore = (function(){
       })
       .done(function(data){
         _active_pub = data
-        console.log(data)
-        // _active_pub.topics = data.topics;
         this.triggerChange();
-
       }.bind(this))
-
+    },
+    create: function(data){
+      console.log('firing create ajax')
+      $.ajax({
+        url: '/publications',
+        type: 'POST',
+        data: {pub: data}
+      })
+      .done(function(data){
+        this.display(data.id);
+        window.location.href='#inspect_publication'
+      }.bind(this))
     },
     update: function(data){
+      console.log('firing update ajax')
       $.ajax({
         url: '/publications/' + data.id,
         type: 'PUT',
         data: {pub: data}
       })
       .done(function(data){
-
         _active_pub = data
         _publications.forEach(function(pub, i){
           if (pub.id === data.id) {
@@ -108,16 +109,43 @@ var PublicationsStore = (function(){
           return this.triggerChange();
         }.bind(this))
       }.bind(this))
+      .fail(console.log('shit updating failed'))
+    },
+    destroy: function(id){
+      $.ajax({
+        url: '/publications/' + id,
+        type: 'DELETE',
+        data: {id: id}
+      })
+      .done(function(data){
+        console.log(data)
+        _publications.forEach(function(pub, i){
+          if (pub.id===id) {
+            console.log('splicing that shit mang')
+            _publications.splice(i, 1)
+          };
+        })
+        this.triggerChange();
+      }.bind(this))
+      .fail( function(){console.log('shit deletion failed')})
+
     },
     payload: function(payload){
       var action = payload.action;
       switch(action.type){
-        case ToMConstants.DISPLAY_PUB:
+        case ToMConstants.DISPLAY_PUBLICATION:
           this.display(action.id);
           break;
         case ToMConstants.UPDATE_PUBLICATION:
           this.update(action.data);
           break;
+        case ToMConstants.CREATE_PUBLICATION:
+          this.create(action.data);
+          break;
+        case ToMConstants.DESTROY_PUBLICATION:
+          this.destroy(action.id);
+          break;
+        default:
       }
     }
 
