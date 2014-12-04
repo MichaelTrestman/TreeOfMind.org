@@ -24,21 +24,25 @@ var AuthorsStore = (function(){
     activeAuthor: function(){
       return _active_author;
     },
+    authors: function(){
+      return _authors;
+    },
 
     all: function(query){
-      if (query==='undefined'){
+      if (!query){
         query = 'recent'
       }
       $.ajax({
-        url: '/authors',
+        url: '/researchers',
         type: 'GET',
         data: {
           query: query
         }
       })
       .done(function(data){
-        _authors = data.authors;
-      })
+        _authors = data.researchers;
+        this.triggerChange();
+      }.bind(this))
     },
     payload: function(payload){
       var action = payload.action;
