@@ -90,7 +90,8 @@ var PublicationsStore = (function(){
       })
       .done(function(data){
         console.log(data)
-        this.triggerChange();
+        this.display(data.id);
+        window.location.href='#inspect_publication'
       }.bind(this))
     },
     update: function(data){
