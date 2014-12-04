@@ -5,7 +5,7 @@
 //= require actions/publication-actions
 //= require form-for
 //= require stores/authors-store
-//= react/author-list-item
+//= require react/author-list-item
 //= require react/author-inspect
 
 var AuthorListBrowseDisplay = React.createClass({
@@ -60,7 +60,6 @@ var AuthorListBrowseDisplay = React.createClass({
       this.setState({ query: query })
       AuthorsStore.all(query)
     },
-
     render: function(){
       authors = [];
       if(this.state.authors){
@@ -69,12 +68,12 @@ var AuthorListBrowseDisplay = React.createClass({
             var thisAuthor = author;
             authors.push(
               <li>
-                <AuthorListItem key={thisAuthor.id} author={thisAuthor} errors={this.state.errors}/>
+                <AuthorListItem key={ thisAuthor.id} author={thisAuthor} errors={this.state.errors}/>
               </li>
             )
           }.bind(this)
         )
-      };
+      } else {console.log('no authors wtf')};
       return(
         <div>
           <div className='row'>
