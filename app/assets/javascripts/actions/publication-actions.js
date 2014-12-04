@@ -1,5 +1,6 @@
 //= require dispatchers/ToM-dispatcher
 //= require constants/ToM-constants
+
 var PublicationActions = {
   displayPublication: function(id) {
     ToMDispatcher.handleViewAction({
