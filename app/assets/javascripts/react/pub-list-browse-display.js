@@ -8,7 +8,6 @@
 //= require react/pub-list-item
 //= require react/pub-inspect
 
-
 var PubListBrowseDisplay = React.createClass({displayName: 'PubListBrowseDisplay',
   getInitialState: function(){
     return {
@@ -21,8 +20,10 @@ var PubListBrowseDisplay = React.createClass({displayName: 'PubListBrowseDisplay
       errors: []
     }
   },
+
   componentDidMount: function(){
     PublicationsStore.addChangeEvent(function(){
+
       if(this.isMounted()) this.setState({
         publications: PublicationsStore.publications(),
         creatingNew: false
@@ -38,14 +39,12 @@ var PubListBrowseDisplay = React.createClass({displayName: 'PubListBrowseDisplay
     return(
       React.createElement("a", {href: "#new_publication"
       },
-
       "Create New Publication Record"
       )
     )
   },
 
   renderCreationForm: function(){
-    console.log('rendering creation form')
     if(!this.state.creatingNew) return;
     var options ={
       onSubmit: this.createPublication,
@@ -57,7 +56,6 @@ var PubListBrowseDisplay = React.createClass({displayName: 'PubListBrowseDisplay
   },
   toggleCreationForm: function(e){
     e.preventDefault();
-    console.log('toggling creation form')
     this.setState({creatingNew: !this.state.creatingNew})
   },
   createPublication: function(data){
@@ -83,12 +81,11 @@ var PubListBrowseDisplay = React.createClass({displayName: 'PubListBrowseDisplay
     }
     return(
       React.createElement("div", null,
-
         React.createElement("div", {className: "row"},
           React.createElement("div", {id: "publications-display"},
-              React.createElement("a", {href: "#taxa_list_dipslay"}, "Taxa  |"),
-              React.createElement("a", {href: "#authors_list_display"}, "  Authors  |"),
-              React.createElement("a", {href: "#topics_list_display"}, "  Topics"),
+            React.createElement("a", {href: "#list_taxa"}, "Taxa  |"),
+            React.createElement("a", {href: "#list_authors"}, "  Authors  |"),
+            React.createElement("a", {href: "#list_topics"}, "  Topics"),
             React.createElement("h3", null, "Publications"),
             this.renderCreationFormButton(),
 
@@ -103,7 +100,6 @@ var PubListBrowseDisplay = React.createClass({displayName: 'PubListBrowseDisplay
               )
             )
           )
-
         )
       )
     )

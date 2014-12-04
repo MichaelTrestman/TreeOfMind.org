@@ -8,7 +8,6 @@
 //= require react/pub-list-item
 //= require react/pub-inspect
 
-
 var PubListBrowseDisplay = React.createClass({
   getInitialState: function(){
     return {
@@ -21,8 +20,10 @@ var PubListBrowseDisplay = React.createClass({
       errors: []
     }
   },
+
   componentDidMount: function(){
     PublicationsStore.addChangeEvent(function(){
+
       if(this.isMounted()) this.setState({
         publications: PublicationsStore.publications(),
         creatingNew: false
@@ -38,14 +39,12 @@ var PubListBrowseDisplay = React.createClass({
     return(
       <a href="#new_publication"
       >
-
       Create New Publication Record
       </a>
     )
   },
 
   renderCreationForm: function(){
-    console.log('rendering creation form')
     if(!this.state.creatingNew) return;
     var options ={
       onSubmit: this.createPublication,
@@ -57,7 +56,6 @@ var PubListBrowseDisplay = React.createClass({
   },
   toggleCreationForm: function(e){
     e.preventDefault();
-    console.log('toggling creation form')
     this.setState({creatingNew: !this.state.creatingNew})
   },
   createPublication: function(data){
@@ -83,12 +81,11 @@ var PubListBrowseDisplay = React.createClass({
     }
     return(
       <div>
-
         <div className='row'>
           <div id='publications-display' >
-              <a href='#taxa_list_dipslay'>Taxa  |</a>
-              <a href='#authors_list_display'>  Authors  |</a>
-              <a href='#topics_list_display'>  Topics</a>
+            <a href='#list_taxa'>Taxa  |</a>
+            <a href='#list_authors'>  Authors  |</a>
+            <a href='#list_topics'>  Topics</a>
             <h3>Publications</h3>
             {this.renderCreationFormButton()}
 
@@ -103,7 +100,6 @@ var PubListBrowseDisplay = React.createClass({
               </ul>
             </div>
           </div>
-
         </div>
       </div>
     )
