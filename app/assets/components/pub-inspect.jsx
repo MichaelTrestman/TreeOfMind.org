@@ -19,6 +19,7 @@ var PubInspect = React.createClass({
     };
   },
   componentDidMount: function(){
+
     if (this.props.creating){}else{
       PublicationsStore.addChangeEvent(function(data){
         if(this.isMounted()) this.setState({
@@ -76,7 +77,7 @@ var PubInspect = React.createClass({
           <FormFor object={ object } options = { options } errors = { [] } />
         </div>
       )
-    } else if (this.props.creating===true) {
+    } else if (this.props.creating) {
       var options = {
         onSubmit: this.createPub,
         abstract: { type: 'textarea' }
