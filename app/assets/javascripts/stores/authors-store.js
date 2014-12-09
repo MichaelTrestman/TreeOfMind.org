@@ -60,8 +60,8 @@ var AuthorsStore = (function(){
         data: {id: id}
       })
       .done(function(data){
-        _active_author = data.researcher
-        _active_author_pubs = data.publications
+        _active_author = data.researcher;
+        _active_author_pubs = data.publications;
         this.triggerChange();
       }.bind(this))
     },
@@ -74,6 +74,9 @@ var AuthorsStore = (function(){
           break;
         case ToMConstants.UPDATE_AUTHOR:
           this.update(action.data);
+          break;
+        case ToMConstants.DESTROY_AUTHOR:
+          this.destroy(action.id);
           break;
         default:
       }
