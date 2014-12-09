@@ -7,32 +7,22 @@ describe Taxon do
       })
 
     @animals.add_subtaxon({name: 'monkeys'})
-    @monkeys = Taxon.where({name: 'monkeys'})
+    @monkeys = Taxon.where({name: 'monkeys'})[0]
 
   end
   it "has subtaxa" do
-    puts "**********"
-    p Taxon.where({name: "monkeys"}).first
-
-    p @animals.subtaxons
-
     expect(@animals.subtaxons.length > 0).to eq true
 
-    expect(@animals.subtaxons).to include @monkeys
+    expect(@animals.subtaxons.any? { |sub| sub.name == 'monkeys' }).to be true
   end
   it "has a supertaxon" do
-    # p @monkeys
-    # p @animals.name
-    # p @animals.supertaxon_id
-
+    expect(@monkeys.supertaxon.name).to eq "animals"
   end
 
-  # it "is nestable" do
-  #   expect(@animals.name).to eq "animals"
-  #   expect(@animals.subtaxons.first.name).to eq 'monkeys'
-  #   expect(@monkeys.supertaxon).to be @animals
+  it "is nestable" do
+      expect(@animals.subtaxons[0].supertaxon.name).to eq @animals.name
 
-  # end
+  end
 
 
 end
