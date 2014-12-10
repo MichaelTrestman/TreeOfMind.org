@@ -1,10 +1,10 @@
 class PublicationsController < ApplicationController
 
-  before_action :find_publication, only: [:show, :update, :destroy]
+  before_action :find_publication, only: [:show, :update, :destroy, :add_author]
 
   def index
     if params[:query] == 'recent'
-      render :json => Publication.all
+      render :json => Publication.limit(20)
     else
       results = Publication.where('
         abstract LIKE :query_downcase
@@ -33,13 +33,34 @@ class PublicationsController < ApplicationController
   end
 
   def update
-    publication = Publication.find params[:id]
-    if publication.update_attributes publication_params
+
+    if @publication.update_attributes publication_params
       render :json => publication
     else
       render :json => {:errors => publication.errors.full_messages}, :status => :unprocessable_entity
     end
   end
+
+  def add_author
+    author = nil
+    author = Researcher.find(params[:author_id])
+
+    render :json => {
+        error: 'no author found'
+      } unless author
+
+    @publication.authors << author
+
+    author.publications << @publication
+
+    render :json => {
+      success: 'author added'
+    }
+
+  end
+
+
+
   def show
     topics = @publication.topics
     authors = @publication.researchers
@@ -66,6 +87,7 @@ class PublicationsController < ApplicationController
 
   def find_publication
     @publication = Publication.find(params[:id]) if params[:id]
+    @publication = Publication.find(params[:publication][:id]) if params[:publication][:id]
   end
 
   def publication_params
