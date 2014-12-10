@@ -120,6 +120,8 @@ Router.routes = (function() {
   }
 
   return {
+    "": _welcome,
+    "#_welcome",
     "#login": _login,
     "#about-us": _about_us,
     "#contact-us": _contact_us,

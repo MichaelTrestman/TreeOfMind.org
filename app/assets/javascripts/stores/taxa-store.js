@@ -71,8 +71,8 @@ var TaxaStore = (function(){
         console.log('should be a taxon here:')
         console.log(data.taxon)
         _active_taxon = data.taxon;
-        _active_taxon_supertaxon = data.taxon.supertaxon;
-        _active_taxon_subtaxa =data.taxon.subtaxa;
+        _active_taxon_supertaxon = data.supertaxon;
+        _active_taxon_subtaxa =data.subtaxa;
         this.triggerChange();
       }.bind(this))
     },
