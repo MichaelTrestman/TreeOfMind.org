@@ -63,7 +63,7 @@ class PublicationsController < ApplicationController
 
   def show
     topics = @publication.topics
-    authors = @publication.researchers
+    authors = @publication.authors
     # need to implement the below
     # taxons = @publication.taxons
 
@@ -87,7 +87,8 @@ class PublicationsController < ApplicationController
 
   def find_publication
     @publication = Publication.find(params[:id]) if params[:id]
-    @publication = Publication.find(params[:publication][:id]) if params[:publication][:id]
+
+    @publication = Publication.find(params[:publication][:id]) if params[:publication]
   end
 
   def publication_params
