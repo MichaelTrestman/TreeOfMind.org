@@ -19,7 +19,10 @@ end
   x = Publication.create({title: title, abstract: abstract})
 
   (rand(3)+1).times {
-    x.researchers << Researcher.all.sample
+    auth = Researcher.all.sample
+
+    x.authors << auth
+    auth.publications << x
 
   }
   (rand(3)+1).times {
