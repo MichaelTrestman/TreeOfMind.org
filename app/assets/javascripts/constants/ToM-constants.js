@@ -32,7 +32,7 @@ var ToMConstants = {
   UPDATE_TAXON: 'UPDATE_TAXON',
   DISPLAY_TAXON: 'DISPLAY_TAXON',
   DESTROY_TAXON: 'DESTROY_TAXON'
-
-
-
+}
+var ToMGlobals = {
+  dragSrcEl: null
 }

@@ -66,14 +66,7 @@ Router.routes = (function() {
     );
   }
 
-  var _inspect_taxon = function(){
-    React.unmountComponentAtNode(
-        $('#inspectDisplay')[0]
-      );
-    React.render(
-      React.createElement(TaxonInspect, null), $('#inspectDisplay')[0]
-    );
-  }
+
   var _new_taxon = function(){
     React.unmountComponentAtNode(
       $('#inspectDisplay')[0]
@@ -83,7 +76,17 @@ Router.routes = (function() {
     );
 
   }
-  var _inspect_publication = function(){
+  var _inspect_taxon = function(id){
+    TaxonActions.displayTaxon(id)
+    React.unmountComponentAtNode(
+        $('#inspectDisplay')[0]
+      );
+    React.render(
+      React.createElement(TaxonInspect, null), $('#inspectDisplay')[0]
+    );
+  }
+  var _inspect_publication = function(id){
+    PublicationActions.displayPublication(id)
     React.unmountComponentAtNode(
         $('#inspectDisplay')[0]
       );
@@ -110,7 +113,8 @@ Router.routes = (function() {
     );
   }
 
-  var _inspect_author = function(){
+  var _inspect_author = function(id){
+    AuthorActions.displayAuthor(id);
     React.unmountComponentAtNode(
       $('#inspectDisplay')[0]
     );
@@ -118,20 +122,23 @@ Router.routes = (function() {
       React.createElement(AuthorInspect, null), $('#inspectDisplay')[0]
     );
   }
+  var _welcome = function(){}
 
   return {
+    "": _welcome,
+    "#_welcome": _welcome,
     "#login": _login,
     "#about-us": _about_us,
     "#contact-us": _contact_us,
     // '#publications': _publications
     '#list_publications': _list_publications,
-    '#inspect_publication': _inspect_publication,
+    '#inspect_publication/': _inspect_publication,
     '#new_publication': _new_publication,
     '#list_authors': _list_authors,
-    '#inspect_author': _inspect_author,
+    '#inspect_author/': _inspect_author,
     '#new_author': _new_author,
     "#list_taxa": _list_taxa,
-    "#inspect_taxon": _inspect_taxon,
+    "#inspect_taxon/": _inspect_taxon,
     "#new_taxon": _new_taxon
   }
 }())

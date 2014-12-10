@@ -5,6 +5,7 @@
 //= require react
 //= require actions/publication-actions
 //= require stores/publications-store
+//= require constants/ToM-constants
 
 var PubListItem = React.createClass({
 
@@ -12,7 +13,7 @@ var PubListItem = React.createClass({
 
     var thisPub = this.props.pub
     return (
-      <div className='list-group-item'>
+      <div draggable='true' className='list-group-item'>
         <a href='#' onClick={this.displayPub}>
           <h4>title: {thisPub.title}</h4>
           <p>{thisPub.abstract}</p>
@@ -22,7 +23,15 @@ var PubListItem = React.createClass({
   },
   displayPub: function(e){
     e.preventDefault();
-    PublicationActions.displayPublication(this.props.pub.id)
-    location.href = '#inspect_publication';
+    location.href = '#inspect_publication/' + this.props.pub.id.toString();
+  },
+  handleDragStart: function(e){
+    this.style.opacity = '0.4';
+    ToMGlobals.dragSrcEl = this;
+    // e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', this.props.pub);
+  }.bind(this),
+  handeDragEnd: function(e){
+    this.style.opacity = '1.0';
   }
 })

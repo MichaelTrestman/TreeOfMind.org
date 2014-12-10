@@ -21,8 +21,6 @@ var TaxonListItem = React.createClass({displayName: 'TaxonListItem',
   },
   displayTaxon: function(e){
     e.preventDefault();
-    console.log(this.props)
-    TaxonActions.displayTaxon(this.props.taxon.id)
-    location.href = '#inspect_taxon'
+    location.href = '#inspect_taxon/' + this.props.taxon.id.toString();
   }
 })

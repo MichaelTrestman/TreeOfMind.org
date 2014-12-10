@@ -19,9 +19,9 @@ var AuthorListItem = React.createClass({
       </div>
     )
   },
+
   displayAuthor: function(e){
     e.preventDefault();
-    AuthorActions.displayAuthor(this.props.author.id)
-    location.href='#inspect_author'
+    location.href='#inspect_author/' + this.props.author.id.toString();
   }
 })
