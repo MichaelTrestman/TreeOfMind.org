@@ -26,13 +26,11 @@ class ResearchersController < ApplicationController
         topics << top unless topics.include? top
       end
     end
-
     render :json => {
       researcher: @researcher,
       publications: @researcher.publications,
       topics: topics
     }
-
   end
 
 

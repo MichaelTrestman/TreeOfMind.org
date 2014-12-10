@@ -3,25 +3,25 @@ class PublicationsController < ApplicationController
   before_action :find_publication, only: [:show, :update, :destroy]
 
   def index
-      if params[:query] == 'recent'
-        render :json => Publication.all
-      else
-        results = Publication.where('
-          abstract LIKE :query_downcase
-          OR
-          abstract LIKE :query_capitalize
-          OR
-          abstract LIKE :query_upcase
-          OR
-          title LIKE :query_downcase
-          OR
-          title LIKE :query_capitalize
-          OR
-          title LIKE :query_upcase
-          ', query_downcase: "%#{params[:query].downcase}%", query_capitalize: "%#{params[:query].capitalize}%" ,
-            query_upcase: "%#{params[:query].upcase}%" )
-        render :json => results
-      end
+    if params[:query] == 'recent'
+      render :json => Publication.all
+    else
+      results = Publication.where('
+        abstract LIKE :query_downcase
+        OR
+        abstract LIKE :query_capitalize
+        OR
+        abstract LIKE :query_upcase
+        OR
+        title LIKE :query_downcase
+        OR
+        title LIKE :query_capitalize
+        OR
+        title LIKE :query_upcase
+        ', query_downcase: "%#{params[:query].downcase}%", query_capitalize: "%#{params[:query].capitalize}%" ,
+          query_upcase: "%#{params[:query].upcase}%" )
+      render :json => results
+    end
   end
   def create
     pubber = Publication.new publication_params

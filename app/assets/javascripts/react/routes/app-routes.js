@@ -9,6 +9,7 @@
 //= require react/pub-inspect
 //= require react/author-list-browse-display
 //= require react/author-inspect
+//= require react/taxa-list-browse-display
 
 Router.routes = (function() {
 
@@ -48,6 +49,14 @@ Router.routes = (function() {
       React.createElement(PubListBrowseDisplay, null), $('#listDisplay')[0]
     );
   }
+  var _list_taxa = function(){
+    React.unmountComponentAtNode(
+        $('#listDisplay')[0]
+    );
+    React.render(
+      React.createElement(TaxonListBrowseDisplay, null), $('#listDisplay')[0]
+    );
+  }
   var _list_authors = function(){
     React.unmountComponentAtNode(
       $('#listDisplay')[0]
@@ -57,6 +66,23 @@ Router.routes = (function() {
     );
   }
 
+  var _inspect_taxon = function(){
+    React.unmountComponentAtNode(
+        $('#inspectDisplay')[0]
+      );
+    React.render(
+      React.createElement(TaxonInspect, null), $('#inspectDisplay')[0]
+    );
+  }
+  var _new_taxon = function(){
+    React.unmountComponentAtNode(
+      $('#inspectDisplay')[0]
+    );
+    React.render(
+      React.createElement(TaxonInspect, {creating: true }), $('#inspectDisplay')[0]
+    );
+
+  }
   var _inspect_publication = function(){
     React.unmountComponentAtNode(
         $('#inspectDisplay')[0]
@@ -103,7 +129,10 @@ Router.routes = (function() {
     '#new_publication': _new_publication,
     '#list_authors': _list_authors,
     '#inspect_author': _inspect_author,
-    '#new_author': _new_author
+    '#new_author': _new_author,
+    "#list_taxa": _list_taxa,
+    "#inspect_taxon": _inspect_taxon,
+    "#new_taxon": _new_taxon
   }
 }())
 

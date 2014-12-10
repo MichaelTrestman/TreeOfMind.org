@@ -56,13 +56,14 @@ var PubListBrowseDisplay = React.createClass({displayName: 'PubListBrowseDisplay
   },
   toggleCreationForm: function(e){
     e.preventDefault();
-    this.setState({creatingNew: !this.state.creatingNew})
+    this.setState({creatingNew: !this.state.creatingNew
+    })
   },
   createPublication: function(data){
     PublicationActions.createPublication(data);
   },
   updateQuery: function(e){
-    var query = e.target.value
+    var query = e.target.value;
     this.setState({ query: query })
     PublicationsStore.all(query)
   },

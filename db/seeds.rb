@@ -1,3 +1,6 @@
+animal_names = ['bears', 'elephants', 'unicrons', 'dinosaurs', 'velociraptors', 't-rexes', 'whales', 'dolphins', 'platypus', 'octopus', 'squids', 'shrimps', 'wormy things', 'clams' ]
+animal_names.each { |a| Taxon.create({name: a}) }
+
 firstnames = ['dingus', 'joe', 'mary', 'dorkerella']
 lastnames = ['smith', 'jackson', 'dorkenstein', 'blobface']
 firstnames.each do |fn|

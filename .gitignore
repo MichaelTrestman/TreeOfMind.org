@@ -21,3 +21,5 @@
 .module-cache
 
 *.DS_Store
+app/models/htree.rb
+app/assets/components/IRSpaymentPlan
