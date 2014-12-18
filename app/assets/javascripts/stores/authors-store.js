@@ -5,6 +5,7 @@ var AuthorsStore = (function(){
   var _authors = [];
   var _active_author = {};
   var _active_author_pubs = [];
+  var _active_author_coauthors = [];
   var CHANGE_EVENT = 'change';
   var FAIL_TO_CREATE_EVENT = 'creation-failed';
 
@@ -26,6 +27,9 @@ var AuthorsStore = (function(){
     },
     activeAuthorPubs: function(){
       return _active_author_pubs;
+    },
+    activeAuthorCoauthors: function(){
+      return _active_author_coauthors;
     },
     authors: function(){
       return _authors;
@@ -62,6 +66,7 @@ var AuthorsStore = (function(){
       .done(function(data){
         _active_author = data.researcher;
         _active_author_pubs = data.publications;
+        _active_author_coauthors = data.coauthors;
         this.triggerChange();
       }.bind(this))
     },

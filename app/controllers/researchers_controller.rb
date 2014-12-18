@@ -26,11 +26,31 @@ class ResearchersController < ApplicationController
         topics << top unless topics.include? top
       end
     end
+
     render :json => {
       researcher: @researcher,
       publications: @researcher.publications,
-      topics: topics
+      topics: topics,
+      coauthors: @researcher.coauthors
     }
+  end
+
+  def add_publication
+    pub = nil
+    pub = Publication.find(params[:pub_id])
+
+    render :json => {
+        error: 'no pub found'
+      } unless pub
+
+    @researcher.publications << pub
+
+    pub.researcher << @researcher
+
+    render :json => {
+      success: 'pub added'
+    }
+
   end
 
 

@@ -13,7 +13,7 @@ var AuthorListBrowseDisplay = React.createClass({displayName: 'AuthorListBrowseD
       return {
         authors: [],
         query: null,
-        errors: [],
+        errors: [ ],
         creatingNew: false
       }
     },

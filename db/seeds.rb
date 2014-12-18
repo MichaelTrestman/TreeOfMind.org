@@ -1,5 +1,5 @@
-animal_names = ['bears', 'elephants', 'unicrons', 'dinosaurs', 'velociraptors', 't-rexes', 'whales', 'dolphins', 'platypus', 'octopus', 'squids', 'shrimps', 'wormy things', 'clams' ]
-animal_names.each { |a| Taxon.create({name: a}) }
+# animal_names = ['bears', 'elephants', 'unicrons', 'dinosaurs', 'velociraptors', 't-rexes', 'whales', 'dolphins', 'platypus', 'octopus', 'squids', 'shrimps', 'wormy things', 'clams' ]
+# animal_names.each { |a| Taxon.create({name: a}) }
 
 firstnames = ['dingus', 'joe', 'mary', 'dorkerella']
 lastnames = ['smith', 'jackson', 'dorkenstein', 'blobface']
@@ -29,5 +29,32 @@ end
     x.topics << Topic.all.sample
   }
 end
+
+
+
+
+
+researchers = [
+
+  {
+    id: ,
+    first_name: ,
+    last_name: ,
+    publications: []
+  }
+
+]
+
+publications = {
+  title:
+
+}
+
+
+
+
+
+
+
 
 

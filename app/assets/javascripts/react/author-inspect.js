@@ -14,14 +14,24 @@ var AuthorInspect = React.createClass({displayName: 'AuthorInspect',
       pubs: []
     };
   },
+  attachDragEventListeners: function(){
+    this.pubsList = $('#author-pubs-list')
+    $('#author-pubs-list')[0].addEventListener('dragover', this.handleDragOver, false);
+    this.pubsList[0].addEventListener('dragenter', this.handleDragEnter)
+  },
+  componentWillUpdate: function(){
+
+  },
   componentDidMount: function(){
-    if (this.props.creating){}else{
+    if ($('#author-pubs-list').length){ this.attachDragEventListeners(); }
+    if (!(this.props.creating)){
       AuthorsStore.addChangeEvent(function(data){
 
           if(this.isMounted()) this.setState({
               editing: false,
               thisAuthor: AuthorsStore.activeAuthor(),
-              pubs: AuthorsStore.activeAuthorPubs()
+              pubs: AuthorsStore.activeAuthorPubs(),
+              coauthors: AuthorsStore.activeAuthorCoauthors()
           });
       }.bind(this))
       AuthorsStore.addFailToTakeAction(function(e, data){
@@ -65,6 +75,8 @@ var AuthorInspect = React.createClass({displayName: 'AuthorInspect',
         React.createElement("p", null, " select a publication, researcher, or taxon to display info about it here ")
       )
     } else {
+      console.log('should be coauthors here');
+      console.log(this.renderList(this.state.coauthors));
 
       var authy = this.state.thisAuthor
       return (
@@ -74,15 +86,28 @@ var AuthorInspect = React.createClass({displayName: 'AuthorInspect',
           React.createElement("a", {href: "#", onClick: this.delete}, "delete"),
           React.createElement("div", {className: "row"},
             React.createElement("div", {className: "col-lg-6 infoPanel"},
-              React.createElement("ul", {className: "scrollyballz"},
+              React.createElement("ul", {id: "author-pubs-list", className: "scrollyballz"},
                 React.createElement("p", {className: "tagName"}, "publications:"),
                 this.renderList(this.state.pubs)
+              )
+            ),
+            React.createElement("div", {className: "col-lg-6 infoPanel"},
+              React.createElement("ul", {id: "author-coauthors-list", className: "scrollyballz"},
+                React.createElement("p", {className: "tagName"}, "coauthors:"),
+                 this.renderList(this.state.coauthors)
               )
             )
           )
         )
       )
     }
+  },
+  handleDragOver: function(e){
+    if (e.preventDefault) {
+      e.preventDefault();
+    };
+    e.dataTransfer.dropEffect = 'copy';
+    return false;
   },
   renderList: function (tags) {
     var tagList = [];
