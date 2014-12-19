@@ -66,6 +66,7 @@ var AuthorsStore = (function(){
       .done(function(data){
         _active_author = data.researcher;
         _active_author_pubs = data.publications;
+        console.log(data.publications)
         _active_author_coauthors = data.coauthors;
         this.triggerChange();
       }.bind(this))

@@ -17,8 +17,8 @@ var PubListItem = React.createClass({
     return (
       <div id={this.draggableID} draggable='true' className='list-group-item'>
         <a href='#' onClick={this.displayPub}>
-          <h4>title: {thisPub.title}</h4>
-          <p>{thisPub.abstract}</p>
+          <h4>{thisPub.title}</h4>
+          <p>{thisPub.publication_date}</p>
         </a>
       </div>
     )

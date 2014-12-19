@@ -17,8 +17,8 @@ var PubListItem = React.createClass({displayName: 'PubListItem',
     return (
       React.createElement("div", {id: this.draggableID, draggable: "true", className: "list-group-item"},
         React.createElement("a", {href: "#", onClick: this.displayPub},
-          React.createElement("h4", null, "title: ", thisPub.title),
-          React.createElement("p", null, thisPub.abstract)
+          React.createElement("h4", null, thisPub.title),
+          React.createElement("p", null, thisPub.publication_date)
         )
       )
     )

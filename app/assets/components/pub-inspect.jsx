@@ -20,21 +20,20 @@ var PubInspect = React.createClass({
   },
   componentDidMount: function(){
 
-    if (this.props.creating){}else{
-      PublicationsStore.addChangeEvent(function(data){
-        if(this.isMounted()) this.setState({
-          editing: false,
-          thisPub: PublicationsStore.activePub()
-        });
-      }.bind(this))
+    PublicationsStore.addChangeEvent(function(data){
+      if(this.isMounted()) this.setState({
+        editing: false,
+        thisPub: PublicationsStore.activePub()
+      });
+    }.bind(this))
 
-      PublicationsStore.addFailToTakeAction(function(e, data){
-        if(this.isMounted()) this.setState({
-          errors: data
-        })
-      }.bind(this));
-      PublicationsStore.display();
-    }
+    PublicationsStore.addFailToTakeAction(function(e, data){
+      if(this.isMounted()) this.setState({
+        errors: data
+      })
+    }.bind(this));
+    PublicationsStore.display();
+
   },
   editPub: function(){
     this.setState({ editing: true })
@@ -100,8 +99,6 @@ var PubInspect = React.createClass({
           <h3>Title: {
             this.state.thisPub.publication ? this.state.thisPub.publication.title : 'none selected'
           }</h3>
-          <button onClick={this.editPub}>Edit</button>
-          <button onClick={this.deletePub}> Delete </button>
           <p>Abstract: {this.state.thisPub.publication ? this.state.thisPub.publication.abstract : 'none selected'}</p>
           <div className='row'>
             <div className='col-lg-3 infoPanel'>

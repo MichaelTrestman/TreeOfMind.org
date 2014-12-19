@@ -14,33 +14,33 @@ var AuthorInspect = React.createClass({
       pubs: []
     };
   },
-  attachDragEventListeners: function(){
-    this.pubsList = $('#author-pubs-list')
-    $('#author-pubs-list')[0].addEventListener('dragover', this.handleDragOver, false);
-    this.pubsList[0].addEventListener('dragenter', this.handleDragEnter)
-  },
+  // attachDragEventListeners: function(){
+  //   this.pubsList = $('#author-pubs-list')
+  //   $('#author-pubs-list')[0].addEventListener('dragover', this.handleDragOver, false);
+  //   this.pubsList[0].addEventListener('dragenter', this.handleDragEnter)
+  // },
   componentWillUpdate: function(){
 
   },
   componentDidMount: function(){
-    if ($('#author-pubs-list').length){ this.attachDragEventListeners(); }
-    if (!(this.props.creating)){
-      AuthorsStore.addChangeEvent(function(data){
 
-          if(this.isMounted()) this.setState({
-              editing: false,
-              thisAuthor: AuthorsStore.activeAuthor(),
-              pubs: AuthorsStore.activeAuthorPubs(),
-              coauthors: AuthorsStore.activeAuthorCoauthors()
-          });
-      }.bind(this))
-      AuthorsStore.addFailToTakeAction(function(e, data){
+    AuthorsStore.addChangeEvent(function(data){
+
         if(this.isMounted()) this.setState({
-          errors: data
-        })
-      }.bind(this));
-      AuthorsStore.display();
-    }
+            editing: false,
+            thisAuthor: AuthorsStore.activeAuthor(),
+            pubs: AuthorsStore.activeAuthorPubs(),
+            coauthors: AuthorsStore.activeAuthorCoauthors()
+        });
+
+    }.bind(this))
+    AuthorsStore.addFailToTakeAction(function(e, data){
+      if(this.isMounted()) this.setState({
+        errors: data
+      })
+    }.bind(this));
+    AuthorsStore.display();
+
   },
   editAuthor: function(e){
     e.preventDefault();
@@ -75,15 +75,13 @@ var AuthorInspect = React.createClass({
         <p> select a publication, researcher, or taxon to display info about it here </p>
       )
     } else {
-      console.log('should be coauthors here');
-      console.log(this.renderList(this.state.coauthors));
 
       var authy = this.state.thisAuthor
+      console.log(this.state.pubs)
       return (
         <div>
-          <h3>Name: {authy.first_name} {authy.last_name}</h3>
-          <a href='#' onClick={this.editAuthor}>Edit | </a>
-          <a href='#' onClick={this.delete}>delete</a>
+          <h3>{authy.last_name},{authy.first_name} </h3>
+
           <div className='row'>
             <div className='col-lg-6 infoPanel'>
               <ul id="author-pubs-list" className='scrollyballz'>

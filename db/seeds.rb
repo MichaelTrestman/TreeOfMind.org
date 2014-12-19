@@ -29,14 +29,14 @@ def log_pubs pubs
           last_name: this_author[:last_name]
         })[0]
         db_pub.authors << new_author
-        new_author.publications << db_pub
+        # new_author.publications << db_pub
       else
         new_author = Researcher.create({
           first_name: this_author[:first_name],
           last_name: this_author[:last_name]
         })
         db_pub.authors << new_author
-        new_author.publications << db_pub
+        # new_author.publications << db_pub
       end
     end
   end
@@ -44,8 +44,8 @@ end
 log_pubs $trestman_to_z_pubs
 
 
-# animal_names = ['bears', 'elephants', 'unicrons', 'dinosaurs', 'velociraptors', 't-rexes', 'whales', 'dolphins', 'platypus', 'octopus', 'squids', 'shrimps', 'wormy things', 'clams' ]
-# animal_names.each { |a| Taxon.create({name: a}) }
+animal_names = ['bears', 'elephants', 'unicrons', 'dinosaurs', 'velociraptors', 't-rexes', 'whales', 'dolphins', 'platypus', 'octopus', 'squids', 'shrimps', 'wormy things', 'clams' ]
+animal_names.each { |a| Taxon.create({name: a}) }
 
 # firstnames = ['dingus', 'joe', 'mary', 'dorkerella']
 # lastnames = ['smith', 'jackson', 'dorkenstein', 'blobface']

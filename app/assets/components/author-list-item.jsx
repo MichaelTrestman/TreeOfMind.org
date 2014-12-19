@@ -14,7 +14,7 @@ var AuthorListItem = React.createClass({
     return (
       <div className='list-group-item'>
         <a href='#' onClick={ this.displayAuthor}>
-          <h4>first name: {thisAuthor.first_name} last name: {thisAuthor.last_name}</h4>
+          <h4>{thisAuthor.last_name}, {thisAuthor.first_name}</h4>
         </a>
       </div>
     )
