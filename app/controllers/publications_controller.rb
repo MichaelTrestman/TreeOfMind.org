@@ -4,7 +4,7 @@ class PublicationsController < ApplicationController
 
   def index
     if params[:query] == 'recent'
-      render :json => Publication.limit(200)
+      render :json => Publication.limit(200).sort
     else
       results = Publication.where('
         abstract LIKE :query_downcase

@@ -41,7 +41,7 @@ def log_pubs pubs
     end
   end
 end
-log_pubs trestman_to_z_pubs
+log_pubs $trestman_to_z_pubs
 
 
 # animal_names = ['bears', 'elephants', 'unicrons', 'dinosaurs', 'velociraptors', 't-rexes', 'whales', 'dolphins', 'platypus', 'octopus', 'squids', 'shrimps', 'wormy things', 'clams' ]

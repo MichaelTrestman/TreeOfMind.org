@@ -3,9 +3,9 @@ class ResearchersController < ApplicationController
 
   def index
     if !params[:query] || params[:query] == 'recent'
-      render :json => Researcher.limit(20)
+      render :json => Researcher.limit(200).sort_by{|res|res.last_name}
     else
-      results = Researcher.where('
+      render :json => Researcher.where('
         first_name LIKE :query_downcase
         OR
         first_name LIKE :query_capitalize
@@ -14,7 +14,7 @@ class ResearchersController < ApplicationController
         OR
         last_name LIKE :query_capitalize
       ', query_downcase: "%#{params[:query].downcase}%", query_capitalize: "%#{params[:query].capitalize}%"
-      )
+      ).sort_by{|res|res.last_name}
     end
   end
   def show

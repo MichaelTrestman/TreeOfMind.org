@@ -1,51 +1,51 @@
-trestman_to_z_pubs = [
+$trestman_to_z_pubs = [
   {
     title: "A Bat Without Qualities",
     publication_date: "1993",
     authors: ["Akins, K.A."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Review of Griffin 1992",
     publication_date: "1992",
     authors: ["Alcock, J."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Mental Content.",
     publication_date: "1992",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Mental Content and Evolutionary Explanation.",
     publication_date: "1992",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Intentionality: Natural and Artificial.",
     publication_date: "1995",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Animal Cognition and Animal Minds.",
     publication_date: "1997",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
 
   {
@@ -53,137 +53,165 @@ trestman_to_z_pubs = [
     publication_date: "1997",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "A skeptic's progress.",
     publication_date: "2002",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Animal Pain.",
     publication_date: "2004",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Is Anyone a Cognitive Ethologist?",
     publication_date: "2004",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Fish cognition and consciousness.",
     publication_date: "2013",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Species of Mind: The Philosophy and Biology of Cognitive Ethology.",
     publication_date: "1997",
     authors: ["Allen, C.", "Beckoff, M."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Deciphering Animal Pain.",
     publication_date: "2005",
     authors: ["Allen, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "The Lower Bounds of Cognition: What do spinal cords reveal?",
     publication_date: "2009",
     authors: ["Allen, C.", "Grau, J.", "Meagher, M."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "The Evolution of Reference",
     publication_date: "1998",
     authors: ["Allen, C.", "Saidel, E."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Doctor Dolittle's Delusion.",
     publication_date: "2004",
     authors: ["Anderson, S.R."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "The first step in the case for great ape equality: the argument for other minds.",
     publication_date: "1996",
     authors: ["Andrews, K."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Do Apes Read Minds? Toward a New Folk Psychology.",
     publication_date: "2012",
     authors: ["Andrews, K."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Evolution of Consciousness: Report of Agora Workshop in Sigtuna, Sweden, August 2001",
     publication_date: "2002",
     authors: ["Arhem, P.", "Liljenstrom, H.", "Lindahl, B.I.B."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "The Nature of Mind and Other Essays",
     publication_date: "1980",
     authors: ["Armstrong, D.A."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Affarent and efferent connections of the dorsolateral corticoid area in comparison with connections of the temporoparieto-occipital area in the pigeon (Columbia livia).",
     publication_date: "2005",
     authors: ["Atoji, Y.", "Wild, J.M."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "In the Theatre of Consciousness: Global Workspace Theory, A Rigorous Scientific Theory of Consciousness.",
     publication_date: "1997",
     authors: ["Baars, B.J."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Experiments and observations on the singing of birds.",
     publication_date: "1773",
     authors: ["Barrington, D."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
+  {
+    title: "The Emotional Lives of Animals.",
+    publication_date: "2007",
+    authors: ["Beckoff, M."],
+    abstract: "",
+    link_urls: [],
+    proposed_origin_taxa: []
+  },
+
+  {
+    title: "Cognitive Ethology: Slayers, Skeptics, and Proponents.",
+    publication_date: "1997",
+    authors: ["Beckoff, M.", "Allen, C."],
+    abstract: "",
+    link_urls: [],
+    proposed_origin_taxa: []
+  },
+
+  {
+    title: "The Cognitive Animal.",
+    publication_date: "2002",
+    authors: ["Beckoff, M.", "Allen, C.", "Burghardt, G.M."],
+    abstract: "",
+    link_urls: [],
+    proposed_origin_taxa: []
+  },
+
+
 
 
 
@@ -338,7 +366,7 @@ trestman_to_z_pubs = [
   {
     title: "Is consciousness important?",
     publication_date: "1984",
-    authors: [Wilkes, K.],
+    authors: ["Wilkes, K."],
     abstract: "",
     link_urls: [],
     proposed_origin_taxa: []
@@ -348,23 +376,23 @@ trestman_to_z_pubs = [
     publication_date: "1995",
     authors: ["Wilson, M.D."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Do Animals Think?",
     publication_date: "2004",
     authors: ["Wynne, C."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   },
   {
     title: "Empathy and direct social perception.",
     publication_date: "2011",
     authors: ["Zahavi, D."],
     abstract: "",
-    link_urls: [link],
-    proposed_origin_taxa: [proposed_origin_taxa]
+    link_urls: [],
+    proposed_origin_taxa: []
   }
 ]
