@@ -4,24 +4,6 @@ the evolutionary tree of mind project is an open-source meta-research platform o
 
 the evolutionary tree of mind is was built under NSF Grant blah blah blah
 
-# what is consciousness?
-
-# who is conscious?
-
-# where did consciousness come from?
-
-# why are we consicous?
-
-# how did we evolve?
-
-#data visualizations
-
-
-#bibiliographic database
-
-
-
-
 
 ##overall
 
